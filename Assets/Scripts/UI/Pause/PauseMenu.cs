@@ -61,7 +61,8 @@ namespace Assets.Scripts.UI.Pause
         {
             if (Input.GetButtonDown("Pause"))
             {
-                TogglePanel();
+                if (GameOverScreen.Instance == null || !GameOverScreen.Instance.Active)
+                    TogglePanel();
             }
         }
     }
