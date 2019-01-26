@@ -3,7 +3,8 @@ using UnityEngine;
 
 public enum BossType
 {
-    Painting
+    Painting,
+
 }
 
 public class BossManager : SingletonMonoBehaviour<BossManager>

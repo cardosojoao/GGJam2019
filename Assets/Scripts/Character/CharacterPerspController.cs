@@ -15,6 +15,7 @@ namespace Assets.Scripts.Character
 
         public Transform CharacterTransform;
         public Collider2D CharacterBox;
+        public Animator CharacterAnimator;
         public Vector3 LowerLeftBoundarie { get { return CharacterBox.bounds.min; } }
         public Vector3 LowerRightBoundarie
         {
@@ -45,6 +46,12 @@ namespace Assets.Scripts.Character
 
             Move(directionVector);
             SetSprite(directionVector);
+            SetAnimation(directionVector);
+        }
+
+        private void SetAnimation(Vector2 directionVector)
+        {
+            CharacterAnimator.SetBool("Walking", directionVector != Vector2.zero);
         }
 
         private void SetSprite(Vector2 directionVector)

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using Assets.Scripts.Util;
+﻿using Assets.Scripts.Util;
+using UnityEngine;
 
 namespace Assets.Scripts.UI.Pause
 {
@@ -19,9 +19,21 @@ namespace Assets.Scripts.UI.Pause
             PanelTransform.gameObject.SetActive(false);
         }
 
-        public void ToggleObject()
+        public void TogglePanel()
         {
-            PanelTransform.gameObject.SetActive(!PanelTransform.gameObject.activeSelf);
+            if (PanelTransform.gameObject.activeSelf)
+                ClosePanel();
+            else
+                OpenPanel();
+        }
+
+
+        private void Update()
+        {
+            if (Input.GetButtonDown("Cancel"))
+            {
+                TogglePanel();
+            }
         }
     }
 }
