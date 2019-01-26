@@ -1,15 +1,17 @@
-﻿using Assets.Scripts.UI;
+﻿using Assets.Scripts.Attic.Interaction;
+using Assets.Scripts.UI;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Attic.Interaction
+namespace Assets.Scripts.Attic.Decorations
 {
-    public class OpenCombat : InteractionObject
+    public class DecorationInteract : InteractionObject
     {
+        public DecorationObject DecorationObject;
         public string ButtonKey = "Activate";
-        public BossType BossType;
         public string CombatScene = "Combat";
         public Fader Fader;
+        public AudioSource ClickSound;
 
         public override void ActivateObject()
         {
@@ -23,7 +25,7 @@ namespace Assets.Scripts.Attic.Interaction
 
         private void Update()
         {
-            if (Input.GetButtonDown(ButtonKey))
+            if (Input.GetButtonDown(ButtonKey) && !GameManager.Instance.Paused)
             {
                 StartCombat();
             }
@@ -31,6 +33,7 @@ namespace Assets.Scripts.Attic.Interaction
 
         private void StartCombat()
         {
+            ClickSound.Play();
             GameManager.Instance.OpenScene(CombatScene, SetBoss);
         }
 
@@ -38,7 +41,7 @@ namespace Assets.Scripts.Attic.Interaction
         {
             while (BossManager.Instance == null)
                 yield return null;
-            BossManager.Instance.SetBoss(BossType);
+            BossManager.Instance.SetBoss(DecorationObject.DecorationType);
 
         }
     }

@@ -31,27 +31,56 @@ namespace Assets.Scripts.Character
         public SpriteRenderer SpriteRenderer;
         public float PerspectiveAngle = 45f;
         public float Speed = 10.0f;
+        public float AnimationFactor = 0.236f;
+        public AudioSource WalkSound;
 
         public float MinZ = 0f;
         public float MaxZ = 10f;
 
+        public bool Walking { get; private set; }
+
+        private void Start()
+        {
+            CharacterAnimator.speed = Speed * AnimationFactor;
+        }
+
         private void Update()
         {
             Vector2 directionVector = Vector2.zero;
-            foreach (KeyValuePair<string, Vector2> direction in _directionVector)
+            if (!GameManager.Instance.Paused)
             {
-                var axisInput = Input.GetAxisRaw(direction.Key);
-                directionVector += axisInput * direction.Value;
+                foreach (KeyValuePair<string, Vector2> direction in _directionVector)
+                {
+                    var axisInput = Input.GetAxisRaw(direction.Key);
+                    directionVector += axisInput * direction.Value;
+                }
             }
 
             Move(directionVector);
             SetSprite(directionVector);
             SetAnimation(directionVector);
+
+
+#if UNITY_EDITOR
+            if (Application.isPlaying)
+                CharacterAnimator.speed = Speed * AnimationFactor;
+#endif
         }
 
         private void SetAnimation(Vector2 directionVector)
         {
-            CharacterAnimator.SetBool("Walking", directionVector != Vector2.zero);
+            if (directionVector == Vector2.zero && Walking)
+            {
+                Walking = false;
+                CharacterAnimator.SetBool("Walking", false);
+                WalkSound.Stop();
+            }
+            else if (directionVector != Vector2.zero && !Walking)
+            {
+                CharacterAnimator.SetBool("Walking", true);
+                WalkSound.Play();
+                Walking = true;
+            }
         }
 
         private void SetSprite(Vector2 directionVector)
@@ -80,6 +109,7 @@ namespace Assets.Scripts.Character
             var zDelta = (CharacterBox.bounds.min.y - scenarioBounds.min.y) / (scenarioBounds.max.y - scenarioBounds.min.y);
             currentPosition.z = Mathf.Lerp(MinZ, MaxZ, zDelta);
             CharacterTransform.position = currentPosition;
+
         }
 
         private Vector2 BoundaryFix(Vector2 position, Vector2 movementVector)
@@ -118,5 +148,6 @@ namespace Assets.Scripts.Character
 
             return position;
         }
+
     }
 }

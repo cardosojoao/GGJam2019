@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.UI;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Attic.Decorations
@@ -6,21 +7,23 @@ namespace Assets.Scripts.Attic.Decorations
     public enum DecorationState
     {
         Good,
+        TurningGood,
         Evil
     }
 
     public enum DecorationType
     {
         Painting,
+        FireIron,
         Chair,
         Belt,
-        Window
     }
 
     [ExecuteInEditMode]
     public class DecorationObject : MonoBehaviour
     {
         public SpriteRenderer DecorationRenderer;
+        public Animator DecorationAnimator;
         public Sprite EvilDecoration;
         public Sprite GoodDecoration;
         public DecorationType DecorationType;
@@ -35,6 +38,7 @@ namespace Assets.Scripts.Attic.Decorations
                 SetState();
             }
         }
+
 
         private void Start()
         {
@@ -51,7 +55,7 @@ namespace Assets.Scripts.Attic.Decorations
 
         private void SetDecorationState()
         {
-            var stateDictionary = GameManager.Instance.DecorationManager.DecorationState;
+            var stateDictionary = GameManager.Instance.DecorationManager.DecorationStateDictionary;
             if (stateDictionary.ContainsKey(DecorationType))
             {
                 State = stateDictionary[DecorationType];
@@ -60,6 +64,20 @@ namespace Assets.Scripts.Attic.Decorations
 
         private void SetState()
         {
+            if (Application.isPlaying && gameObject.activeInHierarchy && _state == DecorationState.TurningGood)
+            {
+                StartCoroutine(Transition.WaitForTransition(() =>
+                {
+                    DecorationAnimator.SetTrigger("Change State");
+                    _state = DecorationState.Good;
+                }));
+            }
+            else
+                TriggerSpriteChange();
+        }
+
+        public void TriggerSpriteChange()
+        {
             Sprite targetSprite = null;
             switch (_state)
             {
@@ -67,6 +85,7 @@ namespace Assets.Scripts.Attic.Decorations
                     targetSprite = EvilDecoration;
                     break;
                 case (DecorationState.Good):
+                case (DecorationState.TurningGood):
                     targetSprite = GoodDecoration;
                     break;
             }
@@ -75,10 +94,18 @@ namespace Assets.Scripts.Attic.Decorations
         }
 
 #if UNITY_EDITOR
+
+        private DecorationState _prevState;
+        private void OnEnable()
+        {
+            _prevState = _state;
+        }
+
         private void Update()
         {
-            if (!Application.isPlaying)
+            if (_prevState != _state)
                 SetState();
+            _prevState = _state;
         }
 #endif
     }

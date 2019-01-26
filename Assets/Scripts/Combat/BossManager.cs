@@ -1,11 +1,6 @@
-﻿using Assets.Scripts.Util;
+﻿using Assets.Scripts.Attic.Decorations;
+using Assets.Scripts.Util;
 using UnityEngine;
-
-public enum BossType
-{
-    Painting,
-
-}
 
 public class BossManager : SingletonMonoBehaviour<BossManager>
 {
@@ -40,7 +35,7 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
 
     }
 
-    public void SetBoss(BossType bossType)
+    public void SetBoss(DecorationType bossType)
     {
         Debug.Log("Activate " + bossType);
     }

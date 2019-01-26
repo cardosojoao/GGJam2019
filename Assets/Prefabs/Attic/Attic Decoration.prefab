@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74f9d52a8a67bd43a95813c5cc6d017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetInteraction: {fileID: 7042889736292165826}
+  TargetInteraction: {fileID: 1704567372973441723}
 --- !u!1 &7042889735631122788
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7042889735631122791}
   - component: {fileID: 1414091531646577803}
+  - component: {fileID: 8092719611203923217}
   m_Layer: 0
   m_Name: Attic Decoration
   m_TagString: Untagged
@@ -197,9 +198,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DecorationRenderer: {fileID: 8371864117162835715}
-  EvilDecoration: {fileID: 21300000, guid: 8e8c44a18c361e1488c036b8d37c7d3a, type: 3}
+  DecorationAnimator: {fileID: 8092719611203923217}
+  EvilDecoration: {fileID: 21300000, guid: d6f296b206bfa214ea90691280986ba4, type: 3}
   GoodDecoration: {fileID: 21300000, guid: 8e8c44a18c361e1488c036b8d37c7d3a, type: 3}
-  _state: 1
+  DecorationType: 0
+  _state: 2
+--- !u!95 &8092719611203923217
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7042889735631122788}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 16ddc8026cdb94d48a475c8630a33245, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7042889736292165825
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,9 +232,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7042889736292165824}
   - component: {fileID: 7042889736292165827}
-  - component: {fileID: 7042889736292165826}
   - component: {fileID: 7042889736292165837}
   - component: {fileID: 7042889736292165836}
+  - component: {fileID: 1704567372973441723}
+  - component: {fileID: 154044518241038273}
+  - component: {fileID: 3913517692600255253}
   m_Layer: 0
   m_Name: Button Toggle Sprite
   m_TagString: Untagged
@@ -282,22 +306,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7042889736292165826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7042889736292165825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aae5f4931e69fc4fa274d7e78c634c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ButtonKey: Activate
-  BossType: 0
-  CombatScene: Combat
-  Fader: {fileID: 7042889736292165836}
 --- !u!95 &7042889736292165837
 Animator:
   serializedVersion: 3
@@ -330,3 +338,132 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FaderAnimator: {fileID: 7042889736292165837}
+--- !u!114 &1704567372973441723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7042889736292165825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b90529aa916a294fb3e81d2aa906be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecorationObject: {fileID: 1414091531646577803}
+  ButtonKey: Activate
+  CombatScene: Combat
+  Fader: {fileID: 7042889736292165836}
+  ClickSound: {fileID: 154044518241038273}
+--- !u!82 &154044518241038273
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7042889736292165825}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: de82905ce1857d143be4abe6dfa761b5, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &3913517692600255253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7042889736292165825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d3889f342211f4498710f59af26016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpriteImage: {fileID: 0}
+  SpriteRenderer: {fileID: 7042889736292165827}
+  KeyboardSprite: {fileID: 21300000, guid: 4a2a060bf6f34e44683c1bf190375601, type: 3}
+  ControllerSprite: {fileID: 21300000, guid: 72c56eacfec5c5a4e9ee37b437572f30, type: 3}
