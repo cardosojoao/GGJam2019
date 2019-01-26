@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Character
   layers:
   - Default
   - TransparentFX
@@ -44,6 +45,6 @@ TagManager:
   - name: Background
     uniqueID: 790219219
     locked: 0
-  - name: Decoration
+  - name: Content
     uniqueID: 3810853591
     locked: 0

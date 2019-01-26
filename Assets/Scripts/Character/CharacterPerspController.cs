@@ -3,8 +3,10 @@ using UnityEngine;
 
 namespace Assets.Scripts.Character
 {
-    public class CharacterController : MonoBehaviour
+    public class CharacterPerspController : MonoBehaviour
     {
+        public const string CHARACTER_TAG = "Character";
+
         private static Dictionary<string, Vector2> _directionVector = new Dictionary<string, Vector2>
         {
             { "Vertical", new Vector2(0,1) },
@@ -25,8 +27,12 @@ namespace Assets.Scripts.Character
         }
 
         public Collider2D ScenarioBoundaries;
+        public SpriteRenderer SpriteRenderer;
         public float PerspectiveAngle = 45f;
         public float Speed = 10.0f;
+
+        public float MinZ = 0f;
+        public float MaxZ = 10f;
 
         private void Update()
         {
@@ -38,6 +44,17 @@ namespace Assets.Scripts.Character
             }
 
             Move(directionVector);
+            SetSprite(directionVector);
+        }
+
+        private void SetSprite(Vector2 directionVector)
+        {
+            if (directionVector.x == 0)
+                return;
+            if (directionVector.x > 0)
+                SpriteRenderer.flipX = false;
+            else
+                SpriteRenderer.flipX = true;
         }
 
         private void Move(Vector3 directionVector)
@@ -51,7 +68,10 @@ namespace Assets.Scripts.Character
             var movementVector = directionVector * movement;
             currentPosition += movementVector;
             currentPosition = BoundaryFix(currentPosition, movementVector);
-            currentPosition.z = zPosition;
+
+            var scenarioBounds = ScenarioBoundaries.bounds;
+            var zDelta = (CharacterBox.bounds.min.y - scenarioBounds.min.y) / (scenarioBounds.max.y - scenarioBounds.min.y);
+            currentPosition.z = Mathf.Lerp(MinZ, MaxZ, zDelta);
             CharacterTransform.position = currentPosition;
         }
 
@@ -81,9 +101,10 @@ namespace Assets.Scripts.Character
                 var xEdge = ((llb.y - min.y) / tan) + min.x;
                 position.x = Mathf.Max(position.x, xEdge + extentX);
             }
-            else if (lrb.x > rightXEdge && lrb.y - min.y > tan * (lrb.x - min.x))
+            else if (lrb.x > rightXEdge && lrb.y - min.y > tan * -(lrb.x - max.x))
             {
-
+                var xEdge = max.x - ((lrb.y - min.y) / tan);
+                position.x = Mathf.Min(position.x, xEdge - extentX);
             }
 
             position.y = Mathf.Clamp(position.y, min.y + extentY, max.y + extentY);

@@ -2,15 +2,15 @@
 
 namespace Assets.Scripts.Cam
 {
+    [ExecuteInEditMode]
     public class CameraController : MonoBehaviour
     {
-
         public Camera Camera;
         public SpriteRenderer Background;
 
-        private void Start()
+        private void Update()
         {
-                SetCamera();
+            SetCamera();
         }
 
         public void SetCamera()
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Cam
             if (cameraAspect < backgroundAspect)
             {
                 //Width
-                targetHeight = backgroundSize.x * cameraAspect;
+                targetHeight = backgroundSize.x / cameraAspect;
 
             }
             else
