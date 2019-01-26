@@ -15,6 +15,9 @@ namespace Assets.Scripts.Attic.Decorations
 
         public override void ActivateObject()
         {
+            if (DecorationObject.State == DecorationState.Good || DecorationObject.State == DecorationState.TurningGood)
+                return;
+
             Fader.FadeIn();
         }
 

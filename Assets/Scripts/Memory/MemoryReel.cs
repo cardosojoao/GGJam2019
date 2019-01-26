@@ -39,7 +39,7 @@ namespace Assets.Scripts.Memory
 
         [SerializeField]
         private DecorationType _currentMemoryReel;
-        public DecorationType CurrnetMemoryReel
+        public DecorationType CurrentMemoryReel
         {
             get { return _currentMemoryReel; }
             set
