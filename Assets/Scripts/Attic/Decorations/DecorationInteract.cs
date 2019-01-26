@@ -39,9 +39,9 @@ namespace Assets.Scripts.Attic.Decorations
 
         private IEnumerator SetBoss()
         {
-            while (BossManager.Instance == null)
+            while (GameManager.Instance == null)
                 yield return null;
-            BossManager.Instance.SetBoss(DecorationObject.DecorationType);
+            CombatManager.Instance.SetBoss(DecorationObject.DecorationType);
 
         }
     }

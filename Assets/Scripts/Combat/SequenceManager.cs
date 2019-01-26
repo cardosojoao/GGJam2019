@@ -12,7 +12,7 @@ public class SequenceManager : MonoBehaviour
 
 
     public int SequenceLenght;
-    
+
     private GameObject[] sequencePrefabs;
     private int[] seedSequence;
 
@@ -27,18 +27,21 @@ public class SequenceManager : MonoBehaviour
 
     // sequence container
     private Transform sequenceHostGObj;
+    private Animator animatorSequence;
     private List<GameObject> sequenceGObjs;
 
     // control user input
     private int inputStep;
     private int InputRequired;
+    private bool lastStep;
 
     private void Awake()
     {
         seedSequence = new int[] { 0, 2, 1, 1, 2, 0 };
         seedLenght = seedSequence.Length;
         sequencePrefabs = new GameObject[] { Sequence1, Sequence2, Sequence3 };
-        sequenceHostGObj = transform.Find("Sequence");
+        sequenceHostGObj = transform;
+        animatorSequence = sequenceHostGObj.GetComponent<Animator>();
     }
 
 
@@ -47,10 +50,20 @@ public class SequenceManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        sequenceGObjs = new List<GameObject>();
-        InvokeRepeating("NewSequence", 3,3);
     }
 
+    public void StartSequences()
+    {
+        sequenceGObjs = new List<GameObject>();
+        InvokeRepeating("NewSequence", 3, 3);
+    }
+
+    private void StopSequences()
+    {
+        sequenceActive = false;
+        CancelInvoke("NewSequence");
+        ClearSequence();
+    }
 
     private void Update()
     {
@@ -77,22 +90,28 @@ public class SequenceManager : MonoBehaviour
                 // valid action only one button got pressed
                 if (button == InputRequired)
                 {
-                    Attack.Attack(button);
+                    Attack.Attack(button, lastStep);
 
-                    // valid
-                    if (!NextInput())
+                    if (lastStep)
                     {
-                        // we have an attack
+                        ClearSequence();
+                    }
+                    else
+                    {
+                        lastStep = NextInput();
                     }
                 }
                 else
                 {
-                    // failure, cancel sequence;
-                    ClearSequence();
+                    animatorSequence.SetTrigger("fail");
+                        // failure, cancel sequence;
+                        //ClearSequence();
                 }
             }
         }
     }
+
+
 
 
     private void ClearSequence()
@@ -113,8 +132,8 @@ public class SequenceManager : MonoBehaviour
     {
         ClearSequence();
         SequenceGenerator(3);
-        inputStep = -1;
-        NextInput();
+        inputStep = 0;
+        lastStep = NextInput();
         DisplaySequence();
         sequenceActive = true;
     }
@@ -126,13 +145,9 @@ public class SequenceManager : MonoBehaviour
     /// <returns>if available return true</returns>
     private bool NextInput()
     {
-        inputStep++;
-        if (inputStep > sequence.Length)
-        {
-            return false;
-        }
         InputRequired = sequence[inputStep];
-        return true;
+        inputStep++;
+        return inputStep >= sequence.Length;
     }
 
     /// <summary>
@@ -165,4 +180,8 @@ public class SequenceManager : MonoBehaviour
     }
 
 
+    public void FinishFail()
+    {
+        ClearSequence();
+    }
 }
