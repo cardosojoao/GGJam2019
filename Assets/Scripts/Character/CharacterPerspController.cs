@@ -13,7 +13,7 @@ namespace Assets.Scripts.Character
             { "Horizontal", new Vector2(1,0) },
         };
 
-        public Transform CharacterTransform;
+        public Rigidbody2D CharacterTransform;
         public Collider2D CharacterBox;
         public Animator CharacterAnimator;
         public Vector3 LowerLeftBoundarie { get { return CharacterBox.bounds.min; } }
@@ -30,8 +30,9 @@ namespace Assets.Scripts.Character
         public Collider2D ScenarioBoundaries;
         public SpriteRenderer SpriteRenderer;
         public float PerspectiveAngle = 45f;
-        public float Speed = 10.0f;
-        public float AnimationFactor = 0.236f;
+        public float SpeedX = 2.0f;
+        public float SpeedY = 5.0f;
+        public float AnimationFactor = 0.7f;
         public AudioSource WalkSound;
 
         public float MinZ = 0f;
@@ -41,7 +42,7 @@ namespace Assets.Scripts.Character
 
         private void Start()
         {
-            CharacterAnimator.speed = Speed * AnimationFactor;
+            CharacterAnimator.speed = SpeedX * AnimationFactor;
         }
 
         private void Update()
@@ -63,7 +64,7 @@ namespace Assets.Scripts.Character
 
 #if UNITY_EDITOR
             if (Application.isPlaying)
-                CharacterAnimator.speed = Speed * AnimationFactor;
+                CharacterAnimator.speed = SpeedX * AnimationFactor;
 #endif
         }
 
@@ -93,44 +94,63 @@ namespace Assets.Scripts.Character
                 SpriteRenderer.flipX = true;
         }
 
-        private void Move(Vector3 directionVector)
+        private void Move(Vector2 directionVector)
         {
-            if (directionVector == Vector3.zero)
+            if (directionVector == Vector2.zero)
                 return;
 
             var currentPosition = CharacterTransform.position;
-            var zPosition = currentPosition.z;
-            var movement = Time.deltaTime * Speed;
-            var movementVector = directionVector * movement;
+            var movementX = Time.deltaTime * SpeedX;
+            var movementY = Time.deltaTime * SpeedY;
+
+            var movementVector = directionVector;
+            movementVector.x *= movementX;
+            movementVector.y *= movementY;
+
             currentPosition += movementVector;
             currentPosition = BoundaryFix(currentPosition, movementVector);
 
             var scenarioBounds = ScenarioBoundaries.bounds;
             var zDelta = (CharacterBox.bounds.min.y - scenarioBounds.min.y) / (scenarioBounds.max.y - scenarioBounds.min.y);
-            currentPosition.z = Mathf.Lerp(MinZ, MaxZ, zDelta);
+
             CharacterTransform.position = currentPosition;
 
+            var zPosition = CharacterTransform.transform.position.z;
+            zPosition = Mathf.Lerp(MinZ, MaxZ, zDelta);
+            var truePos = CharacterTransform.transform.position;
+            truePos.z = zPosition;
+            CharacterTransform.transform.position = truePos;
         }
 
         private Vector2 BoundaryFix(Vector2 position, Vector2 movementVector)
         {
-            Vector2 llb = LowerLeftBoundarie;
-            llb += movementVector;
-            Vector2 lrb = LowerRightBoundarie;
-            lrb += movementVector;
-
             var scenarioBounds = ScenarioBoundaries.bounds;
 
             var min = scenarioBounds.min;
             var max = scenarioBounds.max;
+
+            var extentX = CharacterBox.bounds.extents.x;
+            var extentY = CharacterBox.bounds.extents.y;
+
+            if (PerspectiveAngle % 90 == 0)
+            {
+                position.x = Mathf.Clamp(position.x, min.x + extentX, max.x + extentX);
+                position.y = Mathf.Clamp(position.y, min.y + extentY, max.y + extentY);
+
+                return position;
+            }
+
+
+            Vector2 llb = LowerLeftBoundarie;
+            llb += movementVector;
+            Vector2 lrb = LowerRightBoundarie;
+            lrb += movementVector;
             var boundHeight = max.y - min.y;
 
             var tan = Mathf.Tan(PerspectiveAngle * Mathf.Deg2Rad);
             var boundX = boundHeight / tan;
             var leftXEdge = min.x + boundX;
             var rightXEdge = max.x - boundX;
-            var extentX = CharacterBox.bounds.extents.x;
-            var extentY = CharacterBox.bounds.extents.y;
 
 
             if (llb.x < leftXEdge && llb.y - min.y > tan * (llb.x - min.x))

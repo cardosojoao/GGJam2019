@@ -22,10 +22,9 @@ namespace Assets.Scripts.Attic.Decorations
     [ExecuteInEditMode]
     public class DecorationObject : MonoBehaviour
     {
-        public SpriteRenderer DecorationRenderer;
         public Animator DecorationAnimator;
-        public Sprite EvilDecoration;
-        public Sprite GoodDecoration;
+        public Transform EvilDecoration;
+        public Transform GoodDecoration;
         public DecorationType DecorationType;
         [SerializeField]
         private DecorationState _state;
@@ -78,32 +77,26 @@ namespace Assets.Scripts.Attic.Decorations
 
         public void TriggerSpriteChange()
         {
-            Sprite targetSprite = null;
             switch (_state)
             {
                 case (DecorationState.Evil):
-                    targetSprite = EvilDecoration;
+                    EvilDecoration.gameObject.SetActive(true);
+                    GoodDecoration.gameObject.SetActive(false);
                     break;
                 case (DecorationState.Good):
                 case (DecorationState.TurningGood):
-                    targetSprite = GoodDecoration;
+                    EvilDecoration.gameObject.SetActive(false);
+                    GoodDecoration.gameObject.SetActive(true);
                     break;
             }
-
-            DecorationRenderer.sprite = targetSprite;
         }
 
 #if UNITY_EDITOR
 
-        private DecorationState _prevState;
-        private void OnEnable()
-        {
-            _prevState = _state;
-        }
-
         private void Update()
         {
-
+            //if (!Application.isPlaying)
+            //TriggerSpriteChange();
         }
 #endif
     }
