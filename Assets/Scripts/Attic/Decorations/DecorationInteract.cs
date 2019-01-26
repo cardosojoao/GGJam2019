@@ -11,6 +11,7 @@ namespace Assets.Scripts.Attic.Decorations
         public string ButtonKey = "Activate";
         public string CombatScene = "Combat";
         public Fader Fader;
+        public AudioSource ClickSound;
 
         public override void ActivateObject()
         {
@@ -32,6 +33,7 @@ namespace Assets.Scripts.Attic.Decorations
 
         private void StartCombat()
         {
+            ClickSound.Play();
             GameManager.Instance.OpenScene(CombatScene, SetBoss);
         }
 
