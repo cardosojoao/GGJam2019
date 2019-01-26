@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 
@@ -69,7 +67,7 @@ public class AttackManager : MonoBehaviour
     {
         attack1.Action(combo);
     }
-    
+
     public void Attack2(bool combo)
     {
         attack2.Action(combo);

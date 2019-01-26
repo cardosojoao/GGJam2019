@@ -17,6 +17,7 @@ namespace Assets.Scripts.Combat.Sequences
         public SequenceManager SequenceManager;
 
         private WaveDifficulty _currentDifficulty;
+        private bool WavesActive = false;
 
         public void StartWaves(int levelDificulty)
         {
@@ -26,13 +27,23 @@ namespace Assets.Scripts.Combat.Sequences
                 return;
             }
 
+            if (WavesActive)
+                StopWaves();
+
             _currentDifficulty = WaveDifficultyArray[levelDificulty];
             StopAllCoroutines();
             StartCoroutine(WaveRoutine(_currentDifficulty));
         }
 
+        public void StopWaves()
+        {
+            WavesActive = false;
+            SequenceManager.ClearSequence();
+        }
+
         private IEnumerator WaveRoutine(WaveDifficulty difficulty)
         {
+            WavesActive = true;
             SequenceManager.NextSequence(difficulty.SequenceSize, WaveFinished);
             if (difficulty.SequenceExpireTime > 0f)
             {
@@ -43,8 +54,11 @@ namespace Assets.Scripts.Combat.Sequences
 
         private void WaveFinished(bool success)
         {
-            StopAllCoroutines();
-            StartCoroutine(WaveRoutine(_currentDifficulty));
+            if (WavesActive)
+            {
+                StopAllCoroutines();
+                StartCoroutine(WaveRoutine(_currentDifficulty));
+            }
         }
     }
 }

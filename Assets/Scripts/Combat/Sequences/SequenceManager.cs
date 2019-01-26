@@ -135,17 +135,15 @@ public class SequenceManager : MonoBehaviour
     public void ClearSequence()
     {
         var sequenceToClear = _currentSequence;
-        if (_sequenceCallback != null)
-        {
-            var callback = _sequenceCallback;
-            _sequenceCallback = null;
-            callback(_currentSequence.Finished);
-        }
+        var callback = _sequenceCallback;
 
-        if (sequenceToClear == _currentSequence)
+        _currentSequence.Clear();
+        _currentSequence = null;
+
+        if (callback != null)
         {
-            _currentSequence.Clear();
-            _currentSequence = null;
+            _sequenceCallback = null;
+            callback(sequenceToClear.Finished);
         }
 
     }
