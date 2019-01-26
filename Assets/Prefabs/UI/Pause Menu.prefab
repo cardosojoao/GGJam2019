@@ -253,7 +253,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Paused
---- !u!114 &5402917545317648044
+--- !u!114 &945994622525901116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,10 +262,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1952823492013042593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a29ca8eaa4c6949b22a65974a84951, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d79951923e6c754499bf8f1ddf8157b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetScene: MainMenu
+  MainMenuScene: MainMenu
+--- !u!114 &983421479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952823493732211941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7d8fbe9553d81439e150569b8a2eb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5477645024437181941
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,18 +328,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanelTransform: {fileID: 1854124895}
---- !u!114 &983421479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952823493732211941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7d8fbe9553d81439e150569b8a2eb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5477645024057587331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -493,11 +493,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5402917545317648044}
+      objectReference: {fileID: 945994622525901116}
     - target: {fileID: 4186370147527100259, guid: a6e7f0cb1100891458ca178680cd9635,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenScene
+      value: ToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4186370147527100259, guid: a6e7f0cb1100891458ca178680cd9635,
         type: 3}
