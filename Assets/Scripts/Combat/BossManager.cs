@@ -19,6 +19,7 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
     {
         animator = GetComponent<Animator>();
         CurrentPower = InitalPower;
+        powerBar = GameObject.Find("PowerBar").GetComponent<PowerBar>();
     }
 
     // Start is called before the first frame update
@@ -43,7 +44,7 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         CurrentPower -= .1f;
-        CurrentPower = Mathf.Clamp(CurrentPower, 0, 1);
+        CurrentPower = Mathf.Clamp(CurrentPower, 0, MaxPower);
         powerBar.SetPower(CurrentPower);
 
         if( CurrentPower == 0)
@@ -61,7 +62,7 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
     private void IncreasePower()
     {
         CurrentPower += .1f;
-        CurrentPower = Mathf.Clamp(CurrentPower, 0, 1);
+        CurrentPower = Mathf.Clamp(CurrentPower, 0, MaxPower);
         powerBar.SetPower(CurrentPower);
 
         if( CurrentPower == MaxPower)

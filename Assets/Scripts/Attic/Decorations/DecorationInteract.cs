@@ -42,7 +42,7 @@ namespace Assets.Scripts.Attic.Decorations
 
         private IEnumerator SetBoss()
         {
-            while (GameManager.Instance == null)
+            while (CombatManager.Instance == null)
                 yield return null;
             CombatManager.Instance.SetBoss(DecorationObject.DecorationType);
 

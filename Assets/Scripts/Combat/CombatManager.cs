@@ -22,11 +22,6 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
     private DecorationType boss;
 
 
-    private void Awake()
-    {
-        Active = false;
-    }
-
     public void SetBoss(DecorationType bossType)
     {
         boss = bossType;
@@ -46,6 +41,7 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
             default:
                 break;
         }
+        bossManager = currentBoss.GetComponent<BossManager>();
 
         Active = true;
         sequenceManager.StartSequences();
@@ -65,10 +61,12 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
         {
             if (bossManager.Killed)
             {
+                CombateFinished();
                 StartMemory();
             }
             else if (bossManager.Win)
             {
+                CombateFinished();
                 StartAttik();
             }
         }
@@ -89,7 +87,7 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
 
     private IEnumerator SetMemory()
     {
-        while (GameManager.Instance == null)
+        while (MemoryManager.Instance == null)
             yield return null;
         MemoryManager.Instance.SetMemory(boss);
 
