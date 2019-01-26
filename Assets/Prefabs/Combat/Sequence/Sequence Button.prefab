@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4451389164333157034}
   - component: {fileID: 723107070590586029}
   - component: {fileID: 5746619344940239172}
+  - component: {fileID: 2551662387231016993}
   m_Layer: 5
   m_Name: Sequence Button
   m_TagString: Untagged
@@ -59,8 +60,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95d90f9aa0ec0b47947a2b7698ecd93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetButton: 
   KeyboardButtonImage: {fileID: 1365629885390702436}
   ControllerButtonImage: {fileID: 6000817546401195386}
+--- !u!114 &2551662387231016993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451389164333157029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1679637790, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: 100
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &4747199658866292613
 GameObject:
   m_ObjectHideFlags: 0

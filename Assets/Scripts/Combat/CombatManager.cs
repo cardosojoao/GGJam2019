@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.Attic.Decorations;
+using Assets.Scripts.Combat.Sequences;
 using Assets.Scripts.Memory;
 using Assets.Scripts.Util;
 using System.Collections;
@@ -11,7 +12,7 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
     public GameObject Boos2;
     public GameObject Boss3;
     public GameObject Boss4;
-    public SequenceManager sequenceManager;
+    public SequenceWaveManager sequenceManager;
 
     public float CombateFrequency;
     public bool Active;
@@ -19,10 +20,11 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
     private GameObject currentBoss;
     private BossManager bossManager;
     private DecorationType boss;
-
+    private GameObject bossContainer;
 
     public void SetBoss(DecorationType bossType)
     {
+        bossContainer = GameObject.Find("bossContainer");
         boss = bossType;
         switch (bossType)
         {
@@ -32,7 +34,7 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
                 break;
             case DecorationType.Chair:
                 {
-                    currentBoss = GameObject.Instantiate(Boss3, transform);
+                    currentBoss = GameObject.Instantiate(Boss3, bossContainer.transform);
                 }
                 break;
             case DecorationType.Belt:
@@ -43,15 +45,9 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
         bossManager = currentBoss.GetComponent<BossManager>();
 
         Active = true;
-        //sequenceManager.StartSequences();
+        sequenceManager.StartWaves(0);
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()

@@ -1323,7 +1323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaveDifficultyArray:
-  - SequenceSize: 10
+  - SequenceSize: 3
     SequenceExpireTime: 2
   - SequenceSize: 10
     SequenceExpireTime: 2
