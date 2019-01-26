@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts.Util;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.Pause
@@ -12,13 +14,28 @@ namespace Assets.Scripts.UI.Pause
         public void OpenPanel()
         {
             Time.timeScale = 0f;
-            FirstSelectedButton.Select();
             GameManager.Instance.Paused = true;
             PanelTransform.gameObject.SetActive(true);
+
+            StartCoroutine(SelectButton());
         }
+
 
         public void ClosePanel()
         {
+            StartCoroutine(WaitABitBeforeClose());
+
+        }
+
+        private IEnumerator SelectButton()
+        {
+            yield return null;
+            EventSystem.current.SetSelectedGameObject(FirstSelectedButton.gameObject);
+        }
+
+        private IEnumerator WaitABitBeforeClose()
+        {
+            yield return new WaitForEndOfFrame();
             Time.timeScale = 1f;
             GameManager.Instance.Paused = false;
             PanelTransform.gameObject.SetActive(false);

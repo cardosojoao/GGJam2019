@@ -24,7 +24,6 @@ namespace Assets.Scripts.Attic.Decorations
         public Animator DecorationAnimator;
         public Sprite EvilDecoration;
         public Sprite GoodDecoration;
-        public float TransitionTime;
         public DecorationType DecorationType;
         [SerializeField]
         private DecorationState _state;

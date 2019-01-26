@@ -14,7 +14,7 @@ namespace Assets.Scripts.UI
 
         private void Update()
         {
-            if (CheckForActivateButton && Input.GetButtonDown("Activate"))
+            if (CheckForActivateButton && Input.GetButtonDown("Activate") && !GameManager.Instance.Paused)
                 OpenScene();
         }
     }

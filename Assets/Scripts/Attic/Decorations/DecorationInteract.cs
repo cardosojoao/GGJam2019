@@ -25,7 +25,7 @@ namespace Assets.Scripts.Attic.Decorations
 
         private void Update()
         {
-            if (Input.GetButtonDown(ButtonKey))
+            if (Input.GetButtonDown(ButtonKey) && !GameManager.Instance.Paused)
             {
                 StartCombat();
             }
