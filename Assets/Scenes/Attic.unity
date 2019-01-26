@@ -1768,9 +1768,9 @@ MonoBehaviour:
   ScenarioBoundaries: {fileID: 325805191}
   SpriteRenderer: {fileID: 1093255338}
   PerspectiveAngle: 90
-  SpeedX: 2
-  SpeedY: 5
-  AnimationFactor: 0.7
+  SpeedX: 3
+  SpeedY: 4
+  AnimationFactor: 1.4
   WalkSound: {fileID: 422824610}
   MinZ: -5
   MaxZ: 0

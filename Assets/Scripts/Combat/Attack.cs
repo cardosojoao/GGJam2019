@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 
 public class Attack : MonoBehaviour
 {
-    
+
     public AudioClip SFX;
     public float damage;
     public float attackDamage;
@@ -36,7 +34,7 @@ public class Attack : MonoBehaviour
         audioSource.clip = SFX;
         audioSource.Play();
         //yield return new WaitForSeconds(.5f);
-        
+
     }
 
     public void FinishAttack()

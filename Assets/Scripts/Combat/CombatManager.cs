@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Assets.Scripts;
 using Assets.Scripts.Attic.Decorations;
-using Assets.Scripts.Util;
 using Assets.Scripts.Memory;
-    using Assets.Scripts;
+using Assets.Scripts.Util;
+using System.Collections;
+using UnityEngine;
 
 public class CombatManager : SingletonMonoBehaviour<CombatManager>
 {
@@ -44,7 +43,7 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
         bossManager = currentBoss.GetComponent<BossManager>();
 
         Active = true;
-        sequenceManager.StartSequences();
+        //sequenceManager.StartSequences();
     }
 
 

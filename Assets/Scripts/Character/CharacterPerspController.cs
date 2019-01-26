@@ -32,7 +32,7 @@ namespace Assets.Scripts.Character
         public float PerspectiveAngle = 45f;
         public float SpeedX = 2.0f;
         public float SpeedY = 5.0f;
-        public float AnimationFactor = 0.7f;
+        public float AnimationFactor = 1.4f;
         public AudioSource WalkSound;
 
         public float MinZ = 0f;
@@ -42,7 +42,7 @@ namespace Assets.Scripts.Character
 
         private void Start()
         {
-            CharacterAnimator.speed = SpeedX * AnimationFactor;
+            CharacterAnimator.speed = AnimationFactor;
         }
 
         private void Update()
@@ -64,7 +64,7 @@ namespace Assets.Scripts.Character
 
 #if UNITY_EDITOR
             if (Application.isPlaying)
-                CharacterAnimator.speed = SpeedX * AnimationFactor;
+                CharacterAnimator.speed = AnimationFactor;
 #endif
         }
 
@@ -94,32 +94,31 @@ namespace Assets.Scripts.Character
                 SpriteRenderer.flipX = true;
         }
 
-        private void Move(Vector2 directionVector)
+        private void Move(Vector3 directionVector)
         {
-            if (directionVector == Vector2.zero)
+            if (directionVector == Vector3.zero)
                 return;
 
-            var currentPosition = CharacterTransform.position;
+            var currentPosition = CharacterTransform.transform.position;
             var movementX = Time.deltaTime * SpeedX;
             var movementY = Time.deltaTime * SpeedY;
+
+            var scenarioBounds = ScenarioBoundaries.bounds;
+            var zDelta = (CharacterBox.bounds.min.y - scenarioBounds.min.y) / (scenarioBounds.max.y - scenarioBounds.min.y);
 
             var movementVector = directionVector;
             movementVector.x *= movementX;
             movementVector.y *= movementY;
 
+
             currentPosition += movementVector;
             currentPosition = BoundaryFix(currentPosition, movementVector);
-
-            var scenarioBounds = ScenarioBoundaries.bounds;
-            var zDelta = (CharacterBox.bounds.min.y - scenarioBounds.min.y) / (scenarioBounds.max.y - scenarioBounds.min.y);
-
-            CharacterTransform.position = currentPosition;
-
-            var zPosition = CharacterTransform.transform.position.z;
+            var zPosition = currentPosition.z;
             zPosition = Mathf.Lerp(MinZ, MaxZ, zDelta);
-            var truePos = CharacterTransform.transform.position;
-            truePos.z = zPosition;
-            CharacterTransform.transform.position = truePos;
+            currentPosition.z = zPosition;
+
+
+            CharacterTransform.transform.position = currentPosition;
         }
 
         private Vector2 BoundaryFix(Vector2 position, Vector2 movementVector)

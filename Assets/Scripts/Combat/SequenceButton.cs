@@ -1,18 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class SequenceButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public string TargetButton;
+    public Image KeyboardButtonImage;
+    public Image ControllerButtonImage;
+
+    private SequenceData _activeData;
+
+
+    public void SetSequenceData(SequenceData data)
     {
-        
+        _activeData = data;
+        TargetButton = data.TargetButton;
+        KeyboardButtonImage.sprite = data.KeyboardButtonSprite;
+        ControllerButtonImage.sprite = data.ControllerButtonSprite;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ClickedCorrect()
     {
-        
+        Debug.Log("correct");
+    }
+
+    public void SelfDestroy()
+    {
+        Destroy(gameObject);
+
+    }
+
+    public void ClickWrong()
+    {
+
+        Debug.Log("wrong");
     }
 }
