@@ -11,6 +11,7 @@ namespace Assets.Scripts
     {
         public DecorationManager DecorationManager;
 
+        public bool Paused { get; set; }
 
         public void ResetGame()
         {

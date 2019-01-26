@@ -47,10 +47,13 @@ namespace Assets.Scripts.Character
         private void Update()
         {
             Vector2 directionVector = Vector2.zero;
-            foreach (KeyValuePair<string, Vector2> direction in _directionVector)
+            if (!GameManager.Instance.Paused)
             {
-                var axisInput = Input.GetAxisRaw(direction.Key);
-                directionVector += axisInput * direction.Value;
+                foreach (KeyValuePair<string, Vector2> direction in _directionVector)
+                {
+                    var axisInput = Input.GetAxisRaw(direction.Key);
+                    directionVector += axisInput * direction.Value;
+                }
             }
 
             Move(directionVector);
