@@ -103,9 +103,7 @@ namespace Assets.Scripts.Attic.Decorations
 
         private void Update()
         {
-            if (_prevState != _state)
-                SetState();
-            _prevState = _state;
+
         }
 #endif
     }
