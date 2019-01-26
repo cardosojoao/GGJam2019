@@ -9,9 +9,10 @@ public class SequenceManager : MonoBehaviour
     public GameObject Sequence3;
 
     public AttackManager Attack;
-
-
     public int SequenceLenght;
+
+    public AudioClip GoodSequence;
+    public AudioClip BadSequence;
 
     private GameObject[] sequencePrefabs;
     private int[] seedSequence;
@@ -30,6 +31,9 @@ public class SequenceManager : MonoBehaviour
     private Animator animatorSequence;
     private List<GameObject> sequenceGObjs;
 
+    private AudioSource audioSourceFX;
+
+
     // control user input
     private int inputStep;
     private int InputRequired;
@@ -42,6 +46,7 @@ public class SequenceManager : MonoBehaviour
         sequencePrefabs = new GameObject[] { Sequence1, Sequence2, Sequence3 };
         sequenceHostGObj = transform;
         animatorSequence = sequenceHostGObj.GetComponent<Animator>();
+        audioSourceFX = GetComponent<AudioSource>();
     }
 
 
@@ -94,7 +99,10 @@ public class SequenceManager : MonoBehaviour
 
                     if (lastStep)
                     {
-                        ClearSequence();
+                        audioSourceFX.clip = GoodSequence;
+                        audioSourceFX.Play();
+                        animatorSequence.SetTrigger("combo");
+                        //ClearSequence();
                     }
                     else
                     {
@@ -103,6 +111,8 @@ public class SequenceManager : MonoBehaviour
                 }
                 else
                 {
+                    audioSourceFX.clip = BadSequence;
+                    audioSourceFX.Play();
                     animatorSequence.SetTrigger("fail");
                         // failure, cancel sequence;
                         //ClearSequence();
@@ -184,4 +194,10 @@ public class SequenceManager : MonoBehaviour
     {
         ClearSequence();
     }
+
+    public void FinishCombo()
+    {
+        ClearSequence();
+    }
+
 }

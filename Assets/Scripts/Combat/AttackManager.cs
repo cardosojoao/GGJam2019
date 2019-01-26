@@ -6,15 +6,17 @@ using UnityEngine;
 
 public class AttackManager : MonoBehaviour
 {
-    public Attack Weapon1;
-    public Attack Weapon2;
-    public Attack Weapon3;
+    public GameObject Weapon1Prefab;
+    public GameObject Weapon2Prefab;
+    public GameObject Weapon3Prefab;
 
     public GameObject Sequence1;
     public GameObject Sequence2;
     public GameObject Sequence3;
 
-
+    Attack attack1;
+    Attack attack2;
+    Attack attack3;
 
     private int[] seedSequence;
     private int seedLenght;
@@ -26,6 +28,18 @@ public class AttackManager : MonoBehaviour
         seedLenght = seedSequence.Length;
     }
 
+    private void Start()
+    {
+        GameObject weapon1 = GameObject.Instantiate(Weapon1Prefab, transform);
+        attack1 = weapon1.GetComponent<Attack>();
+
+        GameObject weapon2 = GameObject.Instantiate(Weapon2Prefab, transform);
+        attack2 = weapon2.GetComponent<Attack>();
+
+        GameObject weapon3 = GameObject.Instantiate(Weapon3Prefab, transform);
+        attack3 = weapon3.GetComponent<Attack>();
+
+    }
 
     public void Attack(int attack, bool combo)
     {
@@ -53,17 +67,17 @@ public class AttackManager : MonoBehaviour
 
     public void Attack1(bool combo)
     {
-        Weapon1.Action(combo);
+        attack1.Action(combo);
     }
     
     public void Attack2(bool combo)
     {
-        Weapon2.Action(combo);
+        attack2.Action(combo);
     }
 
     public void Attack3(bool combo)
     {
-        Weapon3.Action(combo);
+        attack3.Action(combo);
     }
 
 }
