@@ -38,7 +38,6 @@ namespace Assets.Scripts.Attic.Decorations
             }
         }
 
-        private Coroutine _transitionRoutine = null;
 
         private void Start()
         {

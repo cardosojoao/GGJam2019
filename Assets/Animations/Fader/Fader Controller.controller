@@ -14,13 +14,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Fade In
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -325,13 +325,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102804009258337344}
-    m_Position: {x: 288, y: 120, z: 0}
+    m_Position: {x: 312, y: 156, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102651198496659190}
-    m_Position: {x: 300, y: 228, z: 0}
+    m_Position: {x: 312, y: 252, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102679754025893406}
-    m_Position: {x: 516, y: 144, z: 0}
+    m_Position: {x: 564, y: 216, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102796250660971184}
     m_Position: {x: 480, y: 48, z: 0}
