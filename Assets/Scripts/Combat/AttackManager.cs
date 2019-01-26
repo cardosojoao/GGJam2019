@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class AttackManager : MonoBehaviour
 {
     public Attack Weapon1;
@@ -25,23 +27,23 @@ public class AttackManager : MonoBehaviour
     }
 
 
-    public void Attack(int attack)
+    public void Attack(int attack, bool combo)
     {
         switch (attack)
         {
             case 0:
                 {
-                    Attack1();
+                    Attack1(combo);
                 }
                 break;
             case 1:
                 {
-                    Attack2();
+                    Attack2(combo);
                 }
                 break;
             case 2:
                 {
-                    Attack3();
+                    Attack3(combo);
                 }
                 break;
             default:
@@ -49,27 +51,19 @@ public class AttackManager : MonoBehaviour
         }
     }
 
-    public void Attack1()
+    public void Attack1(bool combo)
     {
-        StartCoroutine(Weapon1.Action());
+        Weapon1.Action(combo);
     }
     
-    public void Attack2()
+    public void Attack2(bool combo)
     {
-        StartCoroutine(Weapon2.Action());
+        Weapon2.Action(combo);
     }
 
-    public void Attack3()
+    public void Attack3(bool combo)
     {
-        StartCoroutine(Weapon3.Action());
+        Weapon3.Action(combo);
     }
 
-    private void SequenceGenerator(int lenght)
-    {
-        sequence = new int[lenght];
-        for (int index = 0; index < lenght; index++)
-        {
-            sequence[index] = seedSequence[Random.Range(0, seedLenght - 1)];
-        }
-    }
 }
