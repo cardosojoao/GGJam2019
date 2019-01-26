@@ -5,7 +5,10 @@ namespace Assets.Scripts.Attic.Decorations
 {
     public class DecorationManager : SingletonMonoBehaviour<DecorationManager>
     {
-        public Dictionary<DecorationType, DecorationState> DecorationStateDictionary = new Dictionary<DecorationType, DecorationState>();
+        public Dictionary<DecorationType, DecorationState> DecorationStateDictionary = new Dictionary<DecorationType, DecorationState>()
+        {
+            { DecorationType.Chair, DecorationState.TurningGood }
+        };
 
 
         public void SetDecorationState(DecorationType decorationType, DecorationState decorationState)
