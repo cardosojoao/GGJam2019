@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts.Attic.Decorations
 {
@@ -22,7 +23,7 @@ namespace Assets.Scripts.Attic.Decorations
         public SpriteRenderer DecorationRenderer;
         public Sprite EvilDecoration;
         public Sprite GoodDecoration;
-
+        public DecorationType DecorationType;
         [SerializeField]
         private DecorationState _state;
         public DecorationState State
@@ -32,6 +33,28 @@ namespace Assets.Scripts.Attic.Decorations
             {
                 _state = value;
                 SetState();
+            }
+        }
+
+        private void Start()
+        {
+            StartCoroutine(WaitForManager());
+        }
+
+        private IEnumerator WaitForManager()
+        {
+            while (GameManager.Instance == null)
+                yield return null;
+
+            SetDecorationState();
+        }
+
+        private void SetDecorationState()
+        {
+            var stateDictionary = GameManager.Instance.DecorationManager.DecorationState;
+            if (stateDictionary.ContainsKey(DecorationType))
+            {
+                State = stateDictionary[DecorationType];
             }
         }
 

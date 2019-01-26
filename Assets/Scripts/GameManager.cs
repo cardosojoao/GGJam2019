@@ -3,19 +3,18 @@ using Assets.Scripts.UI;
 using Assets.Scripts.Util;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
     public class GameManager : PersistentMonoBehaviour<GameManager>
     {
-        public Dictionary<DecorationType, DecorationState> DecorationState = new Dictionary<DecorationType, DecorationState>();
+        public DecorationManager DecorationManager;
 
 
         public void ResetGame()
         {
-            DecorationState.Clear();
+            DecorationManager.Clear();
         }
 
         public void OpenScene(string nextScene, Func<IEnumerator> callback = null)

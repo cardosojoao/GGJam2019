@@ -7,8 +7,10 @@ namespace Assets.Scripts.Attic.Decorations
     {
         public Dictionary<DecorationType, DecorationState> DecorationState = new Dictionary<DecorationType, DecorationState>();
 
-        public DecorationManager()
+
+        public void Clear()
         {
+            DecorationState.Clear();
         }
     }
 }
