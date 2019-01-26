@@ -5,24 +5,15 @@ using UnityEngine.UI;
 
 public class PowerBar : MonoBehaviour
 {
-    public float MaxPower;
-    public float RecoveryTime;
-    public float HitDamage;
-
     private Image bar;
-    private float Power;
 
     private void Awake()
     {
-        bar = GetComponent<Image>();
-        Power = MaxPower;
+        bar = transform.Find("Power").GetComponentInChildren<Image>();
     }
 
-
-    public void Hit()
+    public void SetPower(float power)
     {
-        Power -= HitDamage;
-        float strengh = Power / MaxPower;
-        bar.fillAmount = strengh;
+        bar.fillAmount = power;
     }
 }

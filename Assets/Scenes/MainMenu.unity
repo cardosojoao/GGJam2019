@@ -233,7 +233,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.21875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -454,11 +454,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1245184998}
     m_Modifications:
-    - target: {fileID: 6277265532187761954, guid: a6e7f0cb1100891458ca178680cd9635,
-        type: 3}
-      propertyPath: m_Name
-      value: Quit Button
-      objectReference: {fileID: 0}
     - target: {fileID: 6277265532187761955, guid: a6e7f0cb1100891458ca178680cd9635,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -563,6 +558,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277265532187761954, guid: a6e7f0cb1100891458ca178680cd9635,
+        type: 3}
+      propertyPath: m_Name
+      value: Quit Button
       objectReference: {fileID: 0}
     - target: {fileID: 6277265532101919404, guid: a6e7f0cb1100891458ca178680cd9635,
         type: 3}
@@ -872,7 +872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.34117186, y: 0.14689814}
   m_AnchorMax: {x: 0.65882814, y: 0.41421294}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 0.000030517578}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1245184999
@@ -1096,11 +1096,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1245184998}
     m_Modifications:
-    - target: {fileID: 6277265532187761954, guid: a6e7f0cb1100891458ca178680cd9635,
-        type: 3}
-      propertyPath: m_Name
-      value: Start Button
-      objectReference: {fileID: 0}
     - target: {fileID: 6277265532187761955, guid: a6e7f0cb1100891458ca178680cd9635,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1205,6 +1200,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277265532187761954, guid: a6e7f0cb1100891458ca178680cd9635,
+        type: 3}
+      propertyPath: m_Name
+      value: Start Button
       objectReference: {fileID: 0}
     - target: {fileID: 6277265532101919404, guid: a6e7f0cb1100891458ca178680cd9635,
         type: 3}
