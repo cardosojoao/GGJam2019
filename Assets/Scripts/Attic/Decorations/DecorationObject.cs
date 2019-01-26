@@ -12,17 +12,19 @@ namespace Assets.Scripts.Attic.Decorations
     public enum DecorationType
     {
         Painting,
+        FireIron,
         Chair,
         Belt,
-        Window
     }
 
     [ExecuteInEditMode]
     public class DecorationObject : MonoBehaviour
     {
         public SpriteRenderer DecorationRenderer;
+        public Animator DecorationAnimator;
         public Sprite EvilDecoration;
         public Sprite GoodDecoration;
+        public float TransitionTime;
         public DecorationType DecorationType;
         [SerializeField]
         private DecorationState _state;
@@ -35,6 +37,8 @@ namespace Assets.Scripts.Attic.Decorations
                 SetState();
             }
         }
+
+        private Coroutine _transitionRoutine = null;
 
         private void Start()
         {
@@ -60,6 +64,14 @@ namespace Assets.Scripts.Attic.Decorations
 
         private void SetState()
         {
+            if (!Application.isPlaying || !gameObject.activeInHierarchy)
+                TriggerSpriteChange();
+            else
+                DecorationAnimator.SetTrigger("Change State");
+        }
+
+        public void TriggerSpriteChange()
+        {
             Sprite targetSprite = null;
             switch (_state)
             {
@@ -75,10 +87,18 @@ namespace Assets.Scripts.Attic.Decorations
         }
 
 #if UNITY_EDITOR
+
+        private DecorationState _prevState;
+        private void OnEnable()
+        {
+            _prevState = _state;
+        }
+
         private void Update()
         {
-            if (!Application.isPlaying)
+            if (_prevState != _state)
                 SetState();
+            _prevState = _state;
         }
 #endif
     }
