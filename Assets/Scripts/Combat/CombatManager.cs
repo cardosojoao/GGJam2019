@@ -20,10 +20,11 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
     private GameObject currentBoss;
     private BossManager bossManager;
     private DecorationType boss;
-
+    private GameObject bossContainer;
 
     public void SetBoss(DecorationType bossType)
     {
+        bossContainer = GameObject.Find("bossContainer");
         boss = bossType;
         switch (bossType)
         {
@@ -33,7 +34,7 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
                 break;
             case DecorationType.Chair:
                 {
-                    currentBoss = GameObject.Instantiate(Boss3, transform);
+                    currentBoss = GameObject.Instantiate(Boss3, bossContainer.transform);
                 }
                 break;
             case DecorationType.Belt:
@@ -47,12 +48,6 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
         sequenceManager.StartSequences();
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
