@@ -628,6 +628,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4186370147527100259, guid: a6e7f0cb1100891458ca178680cd9635,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186370147527100259, guid: a6e7f0cb1100891458ca178680cd9635,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 1040882607}
+    - target: {fileID: 4186370147527100259, guid: a6e7f0cb1100891458ca178680cd9635,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 1040882607}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6e7f0cb1100891458ca178680cd9635, type: 3}
 --- !u!224 &978666490 stripped
@@ -652,6 +667,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7d8fbe9553d81439e150569b8a2eb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &978666493 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4186370147527100259, guid: a6e7f0cb1100891458ca178680cd9635,
+    type: 3}
+  m_PrefabInstance: {fileID: 978666489}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978666491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1040882604 stripped
@@ -679,6 +706,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextScene: Attic
+--- !u!114 &1040882607 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4186370147527100259, guid: a6e7f0cb1100891458ca178680cd9635,
+    type: 3}
+  m_PrefabInstance: {fileID: 6277265531146880654}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040882604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1099477030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1227,5 +1266,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4186370147527100259, guid: a6e7f0cb1100891458ca178680cd9635,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186370147527100259, guid: a6e7f0cb1100891458ca178680cd9635,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 978666493}
+    - target: {fileID: 4186370147527100259, guid: a6e7f0cb1100891458ca178680cd9635,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 978666493}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6e7f0cb1100891458ca178680cd9635, type: 3}

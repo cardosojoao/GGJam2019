@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.UI;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Attic.Decorations
@@ -6,6 +7,7 @@ namespace Assets.Scripts.Attic.Decorations
     public enum DecorationState
     {
         Good,
+        TurningGood,
         Evil
     }
 
@@ -53,7 +55,7 @@ namespace Assets.Scripts.Attic.Decorations
 
         private void SetDecorationState()
         {
-            var stateDictionary = GameManager.Instance.DecorationManager.DecorationState;
+            var stateDictionary = GameManager.Instance.DecorationManager.DecorationStateDictionary;
             if (stateDictionary.ContainsKey(DecorationType))
             {
                 State = stateDictionary[DecorationType];
@@ -62,10 +64,16 @@ namespace Assets.Scripts.Attic.Decorations
 
         private void SetState()
         {
-            if (!Application.isPlaying || !gameObject.activeInHierarchy)
-                TriggerSpriteChange();
+            if (Application.isPlaying && gameObject.activeInHierarchy && _state == DecorationState.TurningGood)
+            {
+                StartCoroutine(Transition.WaitForTransition(() =>
+                {
+                    DecorationAnimator.SetTrigger("Change State");
+                    _state = DecorationState.Good;
+                }));
+            }
             else
-                DecorationAnimator.SetTrigger("Change State");
+                TriggerSpriteChange();
         }
 
         public void TriggerSpriteChange()
@@ -77,6 +85,7 @@ namespace Assets.Scripts.Attic.Decorations
                     targetSprite = EvilDecoration;
                     break;
                 case (DecorationState.Good):
+                case (DecorationState.TurningGood):
                     targetSprite = GoodDecoration;
                     break;
             }

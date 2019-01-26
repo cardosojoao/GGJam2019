@@ -32,11 +32,13 @@ namespace Assets.Scripts
 
         private IEnumerator WaitForSceneLoad(string nextScene, Func<IEnumerator> callback)
         {
+
             if (Transition.Instance != null)
                 yield return Transition.Instance.StartTransition();
             yield return SceneManager.LoadSceneAsync(nextScene);
             if (Transition.Instance != null)
                 Transition.Instance.EndTransition();
+
             if (callback != null)
                 yield return callback();
         }
