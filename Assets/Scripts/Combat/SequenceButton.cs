@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class SequenceButton : MonoBehaviour
@@ -6,9 +7,12 @@ public class SequenceButton : MonoBehaviour
     public string TargetButton;
     public Image KeyboardButtonImage;
     public Image ControllerButtonImage;
+    public Animator Animator;
 
     private SequenceData _activeData;
 
+    private bool _animating;
+    public bool Clearing { get { return _animating; } }
 
     public void SetSequenceData(SequenceData data)
     {
@@ -20,18 +24,32 @@ public class SequenceButton : MonoBehaviour
 
     public void ClickedCorrect()
     {
-        Debug.Log("correct");
+        _animating = true;
+        Animator.SetTrigger("Hit");
     }
 
     public void SelfDestroy()
     {
-        Destroy(gameObject);
+        if (this != null)
+            StartCoroutine(WaitForClear());
+    }
 
+    private IEnumerator WaitForClear()
+    {
+        while (Clearing)
+            yield return null;
+        Destroy(gameObject);
     }
 
     public void ClickWrong()
     {
-
+        //_animating = true;
         Debug.Log("wrong");
+    }
+
+    public void AnimationFinish()
+    {
+        _animating = false;
+
     }
 }

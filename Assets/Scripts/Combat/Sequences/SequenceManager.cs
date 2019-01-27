@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Combat.Sequences;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,9 +18,12 @@ public class SequenceManager : MonoBehaviour
     public SequenceButton SequenceButtonPrefab;
     public Transform sequenceHostGObj;
     public Animator animatorSequence;
+    public AudioClip GoodSequence;
+    public AudioClip BadSequence;
 
     public AttackManager AttackManager;
     public SequenceData[] SequenceTypeArray;
+    public AudioSource AudioSourceSFX;
 
     private Dictionary<string, SequenceData> p_sequenceTypeDictionary;
     private Dictionary<string, SequenceData> _sequenceTypeDictionary
@@ -48,7 +52,6 @@ public class SequenceManager : MonoBehaviour
     private int[] sequence;
 
     private bool _sequenceActive { get { return _currentSequence != null; } }
-    private bool _clearing = false;
 
 
     // sequence container
@@ -60,19 +63,17 @@ public class SequenceManager : MonoBehaviour
     private bool lastStep;
     private Action<bool> _sequenceCallback;
 
-    public void NextSequence(int length, Action<bool> sequenceCallback)
+    public IEnumerator NextSequence(int length, Action<bool> sequenceCallback)
     {
         if (_sequenceActive)
-            ClearSequence();
+            yield return ClearSequenceRoutine();
 
         _sequenceCallback = sequenceCallback;
 
         if (SequenceTypeArray == null)
-            return;
+            yield break;
         _currentSequence = SequenceGenerator(length);
     }
-
-
 
     private void Update()
     {
@@ -86,6 +87,9 @@ public class SequenceManager : MonoBehaviour
 
     private void CheckButtonPressed(string buttonPressed)
     {
+        if (_currentSequence.Finished || _currentSequence.Broken)
+            return;
+
         var nextButton = _currentSequence.CurrentButton();
         var lastButton = _currentSequence.InFinalButton();
 
@@ -93,19 +97,26 @@ public class SequenceManager : MonoBehaviour
         if (buttonPressed == nextButton)
         {
             var currentButtonType = _sequenceTypeDictionary[nextButton];
+
+            _currentSequence.ShowClickButton(true);
             if (AttackManager != null)
                 AttackManager.Attack(currentButtonType.AttackType, lastButton);
 
-            _currentSequence.ShowClickButton(true);
 
             if (lastButton)
+            {
                 ClearSequence();
+                AudioSourceSFX.clip = GoodSequence;
+                AudioSourceSFX.Play();
+            }
         }
         else
         //Wrong
         {
             _currentSequence.ShowClickButton(false);
             //animatorSequence.SetTrigger("fail");
+            AudioSourceSFX.clip = BadSequence;
+            AudioSourceSFX.Play();
             ClearSequence();
         }
     }
@@ -134,10 +145,17 @@ public class SequenceManager : MonoBehaviour
 
     public void ClearSequence()
     {
+        StartCoroutine(ClearSequenceRoutine());
+    }
+
+    public IEnumerator ClearSequenceRoutine()
+    {
+        if (_currentSequence == null)
+            yield break;
         var sequenceToClear = _currentSequence;
         var callback = _sequenceCallback;
 
-        _currentSequence.Clear();
+        yield return _currentSequence.Clear();
         _currentSequence = null;
 
         if (callback != null)

@@ -44,17 +44,17 @@ namespace Assets.Scripts.Combat.Sequences
         private IEnumerator WaveRoutine(WaveDifficulty difficulty)
         {
             WavesActive = true;
-            SequenceManager.NextSequence(difficulty.SequenceSize, WaveFinished);
+            yield return SequenceManager.NextSequence(difficulty.SequenceSize, WaveFinished);
             if (difficulty.SequenceExpireTime > 0f)
             {
                 yield return new WaitForSeconds(difficulty.SequenceExpireTime);
-                SequenceManager.ClearSequence();
+                yield return WaveRoutine(_currentDifficulty);
             }
         }
 
         private void WaveFinished(bool success)
         {
-            if (WavesActive)
+            if (WavesActive && (success || _currentDifficulty.SequenceExpireTime == 0))
             {
                 StopAllCoroutines();
                 StartCoroutine(WaveRoutine(_currentDifficulty));

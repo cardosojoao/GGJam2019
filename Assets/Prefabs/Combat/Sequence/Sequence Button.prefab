@@ -63,6 +63,7 @@ MonoBehaviour:
   TargetButton: 
   KeyboardButtonImage: {fileID: 1365629885390702436}
   ControllerButtonImage: {fileID: 6000817546401195386}
+  Animator: {fileID: 5041744779645187380}
 --- !u!114 &2551662387231016993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +94,7 @@ Animator:
   m_GameObject: {fileID: 4451389164333157029}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb9ffedc4cfa2c24fbc53f938a469a73, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

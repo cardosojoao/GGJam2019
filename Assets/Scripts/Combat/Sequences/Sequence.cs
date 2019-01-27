@@ -1,4 +1,7 @@
-﻿namespace Assets.Scripts.Combat.Sequences
+﻿using System.Collections;
+using UnityEngine;
+
+namespace Assets.Scripts.Combat.Sequences
 {
     public class Sequence
     {
@@ -13,14 +16,32 @@
             _currentIndex = 0;
         }
 
+        public bool Broken { get; set; }
         public bool Finished { get { return _currentIndex >= _currentSequence.Length; } }
 
-        public void Clear()
+        public IEnumerator Clear()
         {
-            for (int index = 0; index < _buttonArray.Length; index++)
+            var clearing = true;
+            while (clearing)
             {
-                _buttonArray[index].SelfDestroy();
+                yield return new WaitForSeconds(0.2f);
+                clearing = false;
+                foreach (SequenceButton button in _buttonArray)
+                {
+                    if (button.Clearing)
+                    {
+                        clearing = true;
+                        break;
+                    }
+                }
             }
+
+
+            foreach (SequenceButton button in _buttonArray)
+            {
+                button.SelfDestroy();
+            }
+
         }
 
         public string CurrentButton()
@@ -41,7 +62,10 @@
             if (correct)
                 _buttonArray[_currentIndex].ClickedCorrect();
             else
+            {
                 _buttonArray[_currentIndex].ClickWrong();
+                Broken = true;
+            }
 
             _currentIndex++;
         }
