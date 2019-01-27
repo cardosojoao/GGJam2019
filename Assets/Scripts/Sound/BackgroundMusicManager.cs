@@ -39,17 +39,23 @@ namespace Assets.Scripts.Sound
             }
         }
 
+        private void Start()
+        {
+            AudioSource.Play();
+        }
 
         public void CheckOverride(string scene)
         {
             if (_musicOverratedDictionary.ContainsKey(scene))
             {
                 AudioClip audioClip = _musicOverratedDictionary[scene];
+                AudioSource.Stop();
                 AudioSource.clip = audioClip;
                 AudioSource.Play();
             }
             else if (AudioSource.clip != DefaultMusic)
             {
+                AudioSource.Stop();
                 AudioSource.clip = DefaultMusic;
                 AudioSource.Play();
             }

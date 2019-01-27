@@ -179,6 +179,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2443425642027782163, guid: 254bcd7f621e9a04f9094b664ca7cc38,
+        type: 3}
+      propertyPath: m_Name
+      value: Music Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846643997952888260, guid: 254bcd7f621e9a04f9094b664ca7cc38,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 254bcd7f621e9a04f9094b664ca7cc38, type: 3}
 --- !u!1 &582126586
