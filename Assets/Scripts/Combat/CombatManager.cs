@@ -102,9 +102,9 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
     }
 
 
-    private IEnumerator StartAttik()
+    private void StartAttik()
     {
-        yield return CurrentBoss.WaitForAnimating();
+        //yield return CurrentBoss.WaitForAnimating();
         //ClickSound.Play();
         GameManager.Instance.OpenScene("attic");
     }
