@@ -2158,8 +2158,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Developed By:\nAna Mota\nIn\xEAs Garcia\nJo\xE3o Cardoso\nNuno Xu\nMady
-    Bennet\nRodrigo Pinheiro"
+  m_Text: "Developed By:\nAna Mota\nIn\xEAs Garcia\nJo\xE3o Cardoso\nNuno Xu\nMadalena
+    Marcelino\nRodrigo Pinheiro"
 --- !u!222 &1949151323
 CanvasRenderer:
   m_ObjectHideFlags: 0

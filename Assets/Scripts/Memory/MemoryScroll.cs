@@ -29,11 +29,8 @@ namespace Assets.Scripts.Memory
             set
             {
                 var nextPage = Mathf.Clamp(value, 0, Reel.SpriteCount - 1);
-                if (nextPage != _page)
-                {
-                    _page = nextPage;
-                    SetPage();
-                }
+                _page = nextPage;
+                SetPage();
             }
         }
 
