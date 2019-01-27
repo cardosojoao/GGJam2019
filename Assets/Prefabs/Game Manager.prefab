@@ -48,6 +48,7 @@ MonoBehaviour:
   DecorationManager: {fileID: 1404329153806712040}
   MusicManager: {fileID: 6224242814708154389}
   Dificulty: 0
+  MoveTutorialRan: 0
 --- !u!1 &2443425642027782163
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +110,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6effe830db2ef144a8d105b9d0bee3a5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.03
   m_Pitch: 1
   Loop: 0
   Mute: 0

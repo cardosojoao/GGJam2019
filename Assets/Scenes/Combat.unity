@@ -2389,6 +2389,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire Iron Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 2425632117981344194, guid: 1c016ab43a68e9743b6a4ba93b71a5a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2425632117981344193, guid: 1c016ab43a68e9743b6a4ba93b71a5a8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2571,7 +2576,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

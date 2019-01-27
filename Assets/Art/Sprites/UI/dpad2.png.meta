@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 96309f84bd131b94fb090a304f34990f
+guid: 90bf63f956b858e42820dfd1cf71b17b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: joystick_0
-    21300002: joystick_1
-    21300004: joystick_2
+    21300000: dpad2_0
+    21300002: dpad2_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -120,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: joystick_0
+      name: dpad2_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 0
+        x: 19
+        y: 14
         width: 100
-        height: 128
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,19 +133,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 121ed70888ee59b4f88df24965354b0d
+      spriteID: 7855864bf274bfe428c332f84adff4ad
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: joystick_1
+      name: dpad2_1
       rect:
         serializedVersion: 2
-        x: 146
-        y: 0
+        x: 131
+        y: 14
         width: 100
-        height: 128
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,27 +153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b2e99eca61e8b0428b704f9fc632528
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: joystick_2
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 0
-        width: 100
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 88588b3b72e2ac04c8a5a42240251635
+      spriteID: 703ac5438baa5f64497eee7365e83ae9
       vertices: []
       indices: 
       edges: []
@@ -182,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 7360998035fdbe7408232f0acc98531d
+    spriteID: 87d45da3dde90cc47ab22f92a75c5a04
     vertices: []
     indices: 
     edges: []
