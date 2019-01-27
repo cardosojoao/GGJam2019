@@ -2518,8 +2518,11 @@ MonoBehaviour:
     RoundToNextDif: 2
   - SequenceSize: 3
     SequenceExpireTime: 5
-    RoundToNextDif: 10
+    RoundToNextDif: 1
   - SequenceSize: 5
+    SequenceExpireTime: 5
+    RoundToNextDif: 1
+  - SequenceSize: 7
     SequenceExpireTime: 7
     RoundToNextDif: 0
   SequenceManager: {fileID: 1798638348}
@@ -3168,5 +3171,6 @@ PrefabInstance:
       propertyPath: attackContainer
       value: 
       objectReference: {fileID: 473425103}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2486343844232213384, guid: 50a8f52b7ca697a43b2b6a91ac3c4034, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 50a8f52b7ca697a43b2b6a91ac3c4034, type: 3}

@@ -10,6 +10,8 @@ namespace Assets.Scripts.UI
         public Animator GameOverAnimator;
         public bool Active = false;
         public bool CanSkip = false;
+        public AudioClip EndMusic;
+        public float EndMusicVolume;
 
         public void TriggerGameOver()
         {
@@ -20,6 +22,7 @@ namespace Assets.Scripts.UI
 
         private IEnumerator GameOverRoutine()
         {
+            GameManager.Instance.MusicManager.SetMusic(EndMusic, EndMusicVolume);
             yield return Transition.WaitForTransition();
 
             GameOverAnimator.SetTrigger("StartGameOver");
