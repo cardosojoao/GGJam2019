@@ -73,7 +73,7 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
             else if (CurrentBoss.Win)
             {
                 CombateFinished();
-                StartCoroutine(StartAttik());
+                StartAttik();
             }
         }
     }
