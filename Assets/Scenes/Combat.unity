@@ -1805,6 +1805,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2892642416815825750, guid: 0006588092be84d4abb2c4964b196dbc,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892642416815825750, guid: 0006588092be84d4abb2c4964b196dbc,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892642416815825750, guid: 0006588092be84d4abb2c4964b196dbc,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 720
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0006588092be84d4abb2c4964b196dbc, type: 3}
 --- !u!224 &1080339915 stripped
