@@ -15,7 +15,6 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
     public SequenceWaveManager sequenceManager;
     public GameObject bossContainer;
 
-    public float CombateFrequency;
     public bool Active;
     public bool Debug;
     public DecorationType DebugBoss;
@@ -50,7 +49,7 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
 
         Active = true;
         Started = true;
-        sequenceManager.StartWaves(0);
+        sequenceManager.StartWaves();
     }
 
 
@@ -69,12 +68,12 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
             if (CurrentBoss.Killed)
             {
                 CombateFinished();
-                StartMemory();
+                StartCoroutine(StartMemory());
             }
             else if (CurrentBoss.Win)
             {
                 CombateFinished();
-                StartAttik();
+                StartCoroutine(StartAttik());
             }
         }
     }
@@ -86,9 +85,10 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
     }
 
 
-    private void StartMemory()
+    private IEnumerator StartMemory()
     {
         //ClickSound.Play();
+        yield return CurrentBoss.WaitForAnimating();
         GameManager.Instance.OpenScene("Memory", SetMemory);
     }
 
@@ -101,8 +101,9 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
     }
 
 
-    private void StartAttik()
+    private IEnumerator StartAttik()
     {
+        yield return CurrentBoss.WaitForAnimating();
         //ClickSound.Play();
         GameManager.Instance.OpenScene("attic");
     }

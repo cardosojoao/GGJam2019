@@ -26,6 +26,8 @@ namespace Assets.Scripts.Attic.Decorations
         public Transform EvilDecoration;
         public Transform GoodDecoration;
         public DecorationType DecorationType;
+        public bool CombatSkip;
+
         [SerializeField]
         private DecorationState _state;
         public DecorationState State

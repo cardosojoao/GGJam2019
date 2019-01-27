@@ -14,7 +14,8 @@ namespace Assets.Scripts.UI
 
         public void FadeOut()
         {
-            FaderAnimator.SetTrigger("Fade Out");
+            if (gameObject.activeInHierarchy)
+                FaderAnimator.SetTrigger("Fade Out");
         }
 
         public void FadeOutFinished()

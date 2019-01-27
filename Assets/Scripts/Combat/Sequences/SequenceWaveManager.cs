@@ -9,6 +9,7 @@ namespace Assets.Scripts.Combat.Sequences
     {
         public int SequenceSize;
         public float SequenceExpireTime;
+        public int RoundToNextDif;
     }
 
     public class SequenceWaveManager : MonoBehaviour
@@ -16,23 +17,33 @@ namespace Assets.Scripts.Combat.Sequences
         public WaveDifficulty[] WaveDifficultyArray;
         public SequenceManager SequenceManager;
 
-        private WaveDifficulty _currentDifficulty;
         private bool WavesActive = false;
-
-        public void StartWaves(int levelDificulty)
+        private int _timeInDif;
+        private WaveDifficulty Dificulty
         {
+            get
+            {
+                var dif = Mathf.Clamp(GameManager.Instance.Dificulty, 0, WaveDifficultyArray.Length - 1);
+                return WaveDifficultyArray[dif];
+            }
+        }
+
+
+        public void StartWaves()
+        {
+            /*
             if (WaveDifficultyArray == null || levelDificulty >= WaveDifficultyArray.Length)
             {
                 Debug.Log("Wave difficulty not set (" + levelDificulty + ")");
                 return;
             }
+            */
 
             if (WavesActive)
                 StopWaves();
 
-            _currentDifficulty = WaveDifficultyArray[levelDificulty];
             StopAllCoroutines();
-            StartCoroutine(WaveRoutine(_currentDifficulty));
+            StartCoroutine(WaveRoutine());
         }
 
         public void StopWaves()
@@ -41,23 +52,29 @@ namespace Assets.Scripts.Combat.Sequences
             SequenceManager.ClearSequence();
         }
 
-        private IEnumerator WaveRoutine(WaveDifficulty difficulty)
+        private IEnumerator WaveRoutine()
         {
             WavesActive = true;
-            yield return SequenceManager.NextSequence(difficulty.SequenceSize, WaveFinished);
-            if (difficulty.SequenceExpireTime > 0f)
+            yield return SequenceManager.NextSequence(Dificulty.SequenceSize, WaveFinished);
+            if (Dificulty.SequenceExpireTime > 0f)
             {
-                yield return new WaitForSeconds(difficulty.SequenceExpireTime);
-                yield return WaveRoutine(_currentDifficulty);
+                yield return new WaitForSeconds(Dificulty.SequenceExpireTime);
+                yield return WaveRoutine();
             }
         }
 
         private void WaveFinished(bool success)
         {
-            if (WavesActive && (success || _currentDifficulty.SequenceExpireTime == 0))
+            if (WavesActive && (success || Dificulty.SequenceExpireTime == 0))
             {
+                if (success)
+                    _timeInDif++;
+
                 StopAllCoroutines();
-                StartCoroutine(WaveRoutine(_currentDifficulty));
+                StartCoroutine(WaveRoutine());
+
+                if (_timeInDif >= Dificulty.RoundToNextDif)
+                    GameManager.Instance.Dificulty++;
             }
         }
     }

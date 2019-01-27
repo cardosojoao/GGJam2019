@@ -206,7 +206,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemorySpriteArray:
   - Decoration: 0
-    SpriteArray: []
+    SpriteArray:
+    - {fileID: 21300000, guid: 25ad330cb9cd7ff4cac33a770afdc5fa, type: 3}
+    - {fileID: 21300000, guid: a2ae694866d9ca8439675d15a9962ee2, type: 3}
   - Decoration: 1
     SpriteArray: []
   - Decoration: 3
@@ -455,8 +457,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteImage: {fileID: 587282932}
   SpriteRenderer: {fileID: 0}
-  KeyboardSprite: {fileID: 21300000, guid: 4a2a060bf6f34e44683c1bf190375601, type: 3}
-  ControllerSprite: {fileID: 21300000, guid: 72c56eacfec5c5a4e9ee37b437572f30, type: 3}
+  KeyboardSprite: {fileID: 21300000, guid: 59163774ab78b024a8c01a2543e7d466, type: 3}
+  ControllerSprite: {fileID: 21300000, guid: a3f6ac6bf7902ba49a727157a30a81da, type: 3}
 --- !u!1001 &618294506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1472,6 +1474,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _revealed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3899225706713993638, guid: 5ca6ee7a746293449bfc4413ad908997,
+        type: 3}
+      propertyPath: FadeIn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3899225708464936388, guid: 5ca6ee7a746293449bfc4413ad908997,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ca6ee7a746293449bfc4413ad908997, type: 3}

@@ -12,6 +12,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Painting Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 7918195731070445619, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918195731070445616, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918195731070445616, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918195731070445616, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918195731070445616, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918195731070445616, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918195731070445616, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918195731070445616, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7918195731070445616, guid: e934411cbff611140a403a08ccf1d9d7,
         type: 3}
       propertyPath: m_RootOrder
@@ -32,5 +72,47 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7918195731070445622, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: HealAudio
+      value: 
+      objectReference: {fileID: 6476315431558667868}
+    - target: {fileID: 7918195731070445623, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a93b7f445801af14b99a5d1b6e0791f4, type: 2}
+    - target: {fileID: 1176470464936952153, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.132
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176470464936952153, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.10916228
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176470464936952153, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.10916228
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176470464936952153, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.10916228
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741458206445438202, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bdbc423e215f0b54292c72edef43b9ed,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e934411cbff611140a403a08ccf1d9d7, type: 3}
+--- !u!82 &6476315431558667868 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2413119247096673344, guid: e934411cbff611140a403a08ccf1d9d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8691210307063097884}
+  m_PrefabAsset: {fileID: 0}

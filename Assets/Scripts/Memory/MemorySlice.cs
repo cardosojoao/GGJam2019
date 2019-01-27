@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.UI;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Memory
@@ -10,6 +12,7 @@ namespace Assets.Scripts.Memory
         public LayoutElement LayoutElement;
         public Animator SliceAnimator;
 
+        public bool FadeIn;
         [SerializeField]
         private bool _revealed;
         public bool Revealed
@@ -25,9 +28,16 @@ namespace Assets.Scripts.Memory
             }
         }
 
+        private IEnumerator Start()
+        {
+            yield return Transition.WaitForTransition();
+
+            if (FadeIn)
+                SetRevealed();
+        }
+
         private void SetRevealed()
         {
-
             gameObject.SetActive(_revealed);
             if (_revealed && gameObject.activeInHierarchy)
                 SliceAnimator.SetTrigger("Reveal");

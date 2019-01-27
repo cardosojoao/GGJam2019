@@ -392,6 +392,31 @@ PrefabInstance:
       propertyPath: _state
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.45538
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.45538
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.45538
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.51
+      objectReference: {fileID: 0}
     - target: {fileID: 6243521284510540186, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
         type: 3}
       propertyPath: m_IsActive
@@ -514,7 +539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.29667968, y: 0.65416664}
   m_AnchorMax: {x: 0.7033203, y: 0.79305553}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 42}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &330650305
@@ -1059,6 +1084,11 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 7.6106396
       objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165825, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8371864117162835715, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
         type: 3}
       propertyPath: m_Sprite
@@ -1069,6 +1099,31 @@ PrefabInstance:
         type: 3}
       propertyPath: DecorationType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.245455
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.245455
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.245455
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 6243521284510540186, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
         type: 3}
@@ -1391,8 +1446,8 @@ RectTransform:
   m_Father: {fileID: 563476110}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.15285158, y: 0.38090277}
-  m_AnchorMax: {x: 0.8471485, y: 0.61909723}
+  m_AnchorMin: {x: 0.4932422, y: 0.2642361}
+  m_AnchorMax: {x: 0.85519534, y: 0.50243056}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1985,10 +2040,10 @@ RectTransform:
   m_Father: {fileID: 563476110}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.19378905, y: 0.056250017}
-  m_AnchorMax: {x: 0.79058594, y: 0.3765278}
+  m_AnchorMin: {x: 0.13605468, y: 0.16555557}
+  m_AnchorMax: {x: 0.48425782, y: 0.58944446}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0.0000009536743}
+  m_SizeDelta: {x: 0, y: -0.0000076293945}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1949151322
 MonoBehaviour:
@@ -2017,15 +2072,14 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 45
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Developed By:
-
-'
+  m_Text: "Developed By:\nAna Mota\nIn\xEAs Garcia\nJo\xE3o Cardoso\nNuno Xu\nMady
+    \nRodrigo Pinheiro"
 --- !u!222 &1949151323
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2734,6 +2788,11 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 7.0757275
       objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165825, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8371864117162835715, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
         type: 3}
       propertyPath: m_Sprite
@@ -2744,6 +2803,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.09277
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.09277
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042889736292165824, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.09277
       objectReference: {fileID: 0}
     - target: {fileID: 6243521284510540186, guid: cb661f6e950be1b4da3f0ff51b32bc7c,
         type: 3}

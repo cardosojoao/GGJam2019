@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Attic.Decorations;
-using Assets.Scripts.Util;
+﻿using Assets.Scripts.Util;
+using System.Collections;
 using UnityEngine;
 
 public class BossManager : SingletonMonoBehaviour<BossManager>
@@ -11,8 +11,10 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
 
     public bool Killed;
     public bool Win;
+    public bool Animating;
 
     public PowerBar powerBar;
+    public AudioSource HealAudio;
 
     private Animator animator;
 
@@ -31,20 +33,9 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
         InvokeRepeating("IncreasePower", 5, 5);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void SetBoss(DecorationType bossType)
-    {
-        Debug.Log("Activate " + bossType);
-    }
 
     public void DealDamage(float damage)
     {
-        Debug.Log("Boss took " + damage + ".");
         CurrentPower -= damage;
         CurrentPower = Mathf.Clamp(CurrentPower, 0, MaxPower);
         powerBar.SetPower(CurrentPower, MaxPower);
@@ -52,12 +43,25 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
         if (CurrentPower == 0)
         {
             animator.SetTrigger("die");
+            Animating = true;
             Dead();
         }
         else
         {
             animator.SetTrigger("hit");
+            Animating = true;
         }
+    }
+
+    public void AnimationFinish()
+    {
+        Animating = false;
+    }
+
+    public IEnumerator WaitForAnimating()
+    {
+        while (Animating)
+            yield return null;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -71,6 +75,7 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
         CurrentPower += RecoveryRate;
         CurrentPower = Mathf.Clamp(CurrentPower, 0, MaxPower);
         powerBar.SetPower(CurrentPower, MaxPower);
+        HealAudio.Play();
 
         if (CurrentPower == MaxPower)
         {

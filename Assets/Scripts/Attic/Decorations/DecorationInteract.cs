@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Attic.Interaction;
+using Assets.Scripts.Memory;
 using Assets.Scripts.UI;
 using System.Collections;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Assets.Scripts.Attic.Decorations
         public DecorationObject DecorationObject;
         public string ButtonKey = "Activate";
         public string CombatScene = "Combat";
+        public string MemoryScene = "Memory";
         public Fader Fader;
         public AudioSource ClickSound;
 
@@ -30,13 +32,21 @@ namespace Assets.Scripts.Attic.Decorations
         {
             if (Input.GetButtonDown(ButtonKey) && !GameManager.Instance.Paused)
             {
-                StartCombat();
+                ToNextScene();
             }
+        }
+
+        private void ToNextScene()
+        {
+            ClickSound.Play();
+            if (DecorationObject.CombatSkip)
+                GameManager.Instance.OpenScene(MemoryScene, SetMemory);
+            else
+                StartCombat();
         }
 
         private void StartCombat()
         {
-            ClickSound.Play();
             GameManager.Instance.OpenScene(CombatScene, SetBoss);
         }
 
@@ -45,7 +55,13 @@ namespace Assets.Scripts.Attic.Decorations
             while (CombatManager.Instance == null)
                 yield return null;
             CombatManager.Instance.SetBoss(DecorationObject.DecorationType);
+        }
 
+        private IEnumerator SetMemory()
+        {
+            while (MemoryManager.Instance == null)
+                yield return null;
+            MemoryManager.Instance.SetMemory(DecorationObject.DecorationType);
         }
     }
 }

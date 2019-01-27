@@ -21,6 +21,11 @@ namespace Assets.Scripts.Combat.Sequences
 
         public IEnumerator Clear()
         {
+            foreach (SequenceButton button in _buttonArray)
+            {
+                button.SelfDestroy();
+            }
+
             var clearing = true;
             while (clearing)
             {
@@ -36,11 +41,6 @@ namespace Assets.Scripts.Combat.Sequences
                 }
             }
 
-
-            foreach (SequenceButton button in _buttonArray)
-            {
-                button.SelfDestroy();
-            }
 
         }
 

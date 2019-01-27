@@ -56,6 +56,7 @@ public class SequenceManager : MonoBehaviour
 
     // sequence container
     private Sequence _currentSequence = null;
+    private bool _clearing = false;
 
     // control user input
     private int inputStep;
@@ -67,6 +68,9 @@ public class SequenceManager : MonoBehaviour
     {
         if (_sequenceActive)
             yield return ClearSequenceRoutine();
+
+        while (_clearing)
+            yield return null;
 
         _sequenceCallback = sequenceCallback;
 
@@ -152,6 +156,7 @@ public class SequenceManager : MonoBehaviour
     {
         if (_currentSequence == null)
             yield break;
+        _clearing = true;
         var sequenceToClear = _currentSequence;
         var callback = _sequenceCallback;
 
@@ -163,6 +168,7 @@ public class SequenceManager : MonoBehaviour
             _sequenceCallback = null;
             callback(sequenceToClear.Finished);
         }
+        _clearing = false;
 
     }
 

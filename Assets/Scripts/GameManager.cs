@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Attic.Decorations;
+using Assets.Scripts.Sound;
 using Assets.Scripts.UI;
 using Assets.Scripts.Util;
 using System;
@@ -11,6 +12,8 @@ namespace Assets.Scripts
     public class GameManager : PersistentMonoBehaviour<GameManager>
     {
         public DecorationManager DecorationManager;
+        public BackgroundMusicManager MusicManager;
+        public int Dificulty;
 
         private void Start()
         {
@@ -22,6 +25,7 @@ namespace Assets.Scripts
 
         public void ResetGame()
         {
+            Dificulty = 0;
             DecorationManager.Clear();
         }
 
@@ -34,6 +38,8 @@ namespace Assets.Scripts
         {
             if (Transition.Instance != null)
                 yield return Transition.Instance.StartTransition();
+            if (MusicManager != null)
+                MusicManager.CheckOverride(nextScene);
             yield return SceneManager.LoadSceneAsync(nextScene);
             if (Transition.Instance != null)
                 Transition.Instance.EndTransition();

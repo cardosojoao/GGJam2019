@@ -18,7 +18,7 @@ namespace Assets.Scripts.Memory
 
         private void Update()
         {
-            if (Input.GetButtonDown("Activate") && !GameManager.Instance.Paused)
+            if (Input.GetButtonDown("Button1") && !GameManager.Instance.Paused)
                 OpenScene();
         }
     }

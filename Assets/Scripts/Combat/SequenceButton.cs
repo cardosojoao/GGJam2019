@@ -31,7 +31,11 @@ public class SequenceButton : MonoBehaviour
     public void SelfDestroy()
     {
         if (this != null)
+        {
+            _animating = true;
+            Animator.SetTrigger("Miss");
             StartCoroutine(WaitForClear());
+        }
     }
 
     private IEnumerator WaitForClear()
@@ -43,8 +47,6 @@ public class SequenceButton : MonoBehaviour
 
     public void ClickWrong()
     {
-        //_animating = true;
-        Debug.Log("wrong");
     }
 
     public void AnimationFinish()
