@@ -241,7 +241,7 @@ MonoBehaviour:
   - {fileID: 1742924184}
   - {fileID: 2099765125}
   SpriteCount: 4
-  _currentMemoryReel: 0
+  _currentMemoryReel: 3
 --- !u!1001 &61276011
 PrefabInstance:
   m_ObjectHideFlags: 0
