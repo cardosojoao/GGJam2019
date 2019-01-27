@@ -7,8 +7,8 @@ public class Attack : MonoBehaviour
 
     public AudioClip SFX;
     public float damage;
-    public float attackDamage;
 
+    private float attackDamage;
     private Animator weapon;
     private AudioSource audioSource;
 
@@ -22,7 +22,7 @@ public class Attack : MonoBehaviour
     {
         if (combo)
         {
-            attackDamage *= 3;
+            attackDamage = damage * CombatManager.Instance.ComboDamageMultiplier;
         }
         else
         {
@@ -34,7 +34,11 @@ public class Attack : MonoBehaviour
         audioSource.clip = SFX;
         audioSource.Play();
         //yield return new WaitForSeconds(.5f);
+    }
 
+    public void DealDamage()
+    {
+        CombatManager.Instance.CurrentBoss.DealDamage(attackDamage);
     }
 
     public void FinishAttack()

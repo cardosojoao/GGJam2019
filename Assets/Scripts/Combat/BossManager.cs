@@ -7,6 +7,7 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
     public float InitalPower;
     public float MaxPower;
     public float CurrentPower;
+    public float RecoveryRate = 10f;
 
     public bool Killed;
     public bool Win;
@@ -25,7 +26,7 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
     // Start is called before the first frame update
     void Start()
     {
-        powerBar.SetPower(CurrentPower);
+        powerBar.SetPower(CurrentPower, MaxPower);
         animator.Play("Idle");
         InvokeRepeating("IncreasePower", 5, 5);
     }
@@ -41,13 +42,14 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
         Debug.Log("Activate " + bossType);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void DealDamage(float damage)
     {
-        CurrentPower -= .1f;
+        Debug.Log("Boss took " + damage + ".");
+        CurrentPower -= damage;
         CurrentPower = Mathf.Clamp(CurrentPower, 0, MaxPower);
-        powerBar.SetPower(CurrentPower);
+        powerBar.SetPower(CurrentPower, MaxPower);
 
-        if( CurrentPower == 0)
+        if (CurrentPower == 0)
         {
             animator.SetTrigger("die");
             Dead();
@@ -58,14 +60,19 @@ public class BossManager : SingletonMonoBehaviour<BossManager>
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //DealDamage(0.1f);
+    }
+
 
     private void IncreasePower()
     {
-        CurrentPower += .1f;
+        CurrentPower += RecoveryRate;
         CurrentPower = Mathf.Clamp(CurrentPower, 0, MaxPower);
-        powerBar.SetPower(CurrentPower);
+        powerBar.SetPower(CurrentPower, MaxPower);
 
-        if( CurrentPower == MaxPower)
+        if (CurrentPower == MaxPower)
         {
             Won();
         }

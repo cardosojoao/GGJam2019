@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PowerBar : MonoBehaviour
@@ -12,8 +10,8 @@ public class PowerBar : MonoBehaviour
         bar = transform.Find("Power").GetComponentInChildren<Image>();
     }
 
-    public void SetPower(float power)
+    public void SetPower(float power, float maxPower)
     {
-        bar.fillAmount = power;
+        bar.fillAmount = power / maxPower;
     }
 }

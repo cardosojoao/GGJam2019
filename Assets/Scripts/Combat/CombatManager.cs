@@ -8,43 +8,48 @@ using UnityEngine;
 
 public class CombatManager : SingletonMonoBehaviour<CombatManager>
 {
-    public GameObject Boos1;
-    public GameObject Boos2;
-    public GameObject Boss3;
-    public GameObject Boss4;
+    public BossManager PaintingBoss;
+    public BossManager FireIronBoss;
+    public BossManager ChairBoss;
+    public BossManager BeltBoss;
     public SequenceWaveManager sequenceManager;
+    public GameObject bossContainer;
 
     public float CombateFrequency;
     public bool Active;
+    public bool Debug;
+    public DecorationType DebugBoss;
+    public float ComboDamageMultiplier;
+    public bool Started { get; private set; }
 
-    private GameObject currentBoss;
-    private BossManager bossManager;
+    [HideInInspector]
+    public BossManager CurrentBoss;
     private DecorationType boss;
-    private GameObject bossContainer;
 
     public void SetBoss(DecorationType bossType)
     {
-        bossContainer = GameObject.Find("bossContainer");
         boss = bossType;
+        BossManager bossPrefab;
         switch (bossType)
         {
-            case DecorationType.Painting:
-                break;
             case DecorationType.FireIron:
+                bossPrefab = FireIronBoss;
                 break;
             case DecorationType.Chair:
-                {
-                    currentBoss = GameObject.Instantiate(Boss3, bossContainer.transform);
-                }
+                bossPrefab = ChairBoss;
                 break;
             case DecorationType.Belt:
+                bossPrefab = BeltBoss;
                 break;
+            case DecorationType.Painting:
             default:
+                bossPrefab = PaintingBoss;
                 break;
         }
-        bossManager = currentBoss.GetComponent<BossManager>();
+        CurrentBoss = Instantiate(bossPrefab, bossContainer.transform);
 
         Active = true;
+        Started = true;
         sequenceManager.StartWaves(0);
     }
 
@@ -52,14 +57,21 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
     // Update is called once per frame
     void Update()
     {
+#if UNITY_EDITOR
+        if (Debug && !Started)
+        {
+            SetBoss(DebugBoss);
+        }
+#endif
+
         if (Active)
         {
-            if (bossManager.Killed)
+            if (CurrentBoss.Killed)
             {
                 CombateFinished();
                 StartMemory();
             }
-            else if (bossManager.Win)
+            else if (CurrentBoss.Win)
             {
                 CombateFinished();
                 StartAttik();
