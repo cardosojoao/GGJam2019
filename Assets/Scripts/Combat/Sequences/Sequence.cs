@@ -8,6 +8,7 @@ namespace Assets.Scripts.Combat.Sequences
         private string[] _currentSequence;
         private int _currentIndex;
         private SequenceButton[] _buttonArray;
+        public int Count { get { return _buttonArray.Length; } }
 
         public Sequence(string[] sequence, SequenceButton[] buttonArray)
         {
@@ -18,14 +19,24 @@ namespace Assets.Scripts.Combat.Sequences
 
         public bool Broken { get; set; }
         public bool Finished { get { return _currentIndex >= _currentSequence.Length; } }
-
         public IEnumerator Clear()
         {
+            yield return WaitForAnimationClear();
             foreach (SequenceButton button in _buttonArray)
             {
-                button.SelfDestroy();
+                button.SelfDestroyAnimation();
             }
 
+            yield return WaitForAnimationClear();
+
+            foreach (SequenceButton button in _buttonArray)
+            {
+                Object.Destroy(button.gameObject);
+            }
+        }
+
+        private IEnumerator WaitForAnimationClear()
+        {
             var clearing = true;
             while (clearing)
             {
@@ -40,8 +51,6 @@ namespace Assets.Scripts.Combat.Sequences
                     }
                 }
             }
-
-
         }
 
         public string CurrentButton()
@@ -63,7 +72,10 @@ namespace Assets.Scripts.Combat.Sequences
                 _buttonArray[_currentIndex].ClickedCorrect();
             else
             {
-                _buttonArray[_currentIndex].ClickWrong();
+                foreach (SequenceButton button in _buttonArray)
+                {
+                    button.ClickWrong();
+                }
                 Broken = true;
             }
 

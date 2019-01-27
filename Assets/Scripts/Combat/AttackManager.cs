@@ -7,6 +7,7 @@ public class AttackManager : MonoBehaviour
     public Attack attack1;
     public Attack attack2;
     public Attack attack3;
+    public Transform attackContainer;
 
     public void Attack(int attack, bool combo)
     {
@@ -14,17 +15,17 @@ public class AttackManager : MonoBehaviour
         {
             case 0:
                 {
-                    Attack1(combo);
+                    InstantiateAttack(attack1, combo);
                 }
                 break;
             case 1:
                 {
-                    Attack2(combo);
+                    InstantiateAttack(attack2, combo);
                 }
                 break;
             case 2:
                 {
-                    Attack3(combo);
+                    InstantiateAttack(attack3, combo);
                 }
                 break;
             default:
@@ -32,19 +33,10 @@ public class AttackManager : MonoBehaviour
         }
     }
 
-    public void Attack1(bool combo)
-    {
-        attack1.Action(combo);
-    }
 
-    public void Attack2(bool combo)
+    private void InstantiateAttack(Attack attack, bool combo)
     {
-        attack2.Action(combo);
+        Attack attackObject = Instantiate(attack, attackContainer);
+        attackObject.Action(combo);
     }
-
-    public void Attack3(bool combo)
-    {
-        attack3.Action(combo);
-    }
-
 }

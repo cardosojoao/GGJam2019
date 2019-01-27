@@ -28,7 +28,7 @@ namespace Assets.Scripts.Memory
             get { return _page; }
             set
             {
-                var nextPage = Mathf.Clamp(value, 0, TotalPageNumber - 1);
+                var nextPage = Mathf.Clamp(value, 0, Reel.SpriteCount - 1);
                 if (nextPage != _page)
                 {
                     _page = nextPage;
@@ -37,7 +37,6 @@ namespace Assets.Scripts.Memory
             }
         }
 
-        public int TotalPageNumber = 3;
         private Coroutine _scrollRoutine = null;
 
         private int _prevPage;
@@ -102,6 +101,11 @@ namespace Assets.Scripts.Memory
 
         private IEnumerator ScrollToPage(int page)
         {
+            if (page == Reel.SpriteCount - 1)
+                ContinueFader.FadeIn();
+            if (page < 0 || page >= Reel.SpriteCount)
+                yield break;
+
             var startX = ScrollTransform.anchoredPosition.x;
             var targetX = GetPageX(page);
 
@@ -118,7 +122,7 @@ namespace Assets.Scripts.Memory
                 yield return null;
             }
 
-            if (page == TotalPageNumber - 1)
+            if (page == Reel.SpriteCount - 1)
                 ContinueFader.FadeIn();
 
             _scrollRoutine = null;

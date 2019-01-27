@@ -8,6 +8,15 @@ namespace Assets.Scripts.Attic.Decorations
         public Dictionary<DecorationType, DecorationState> DecorationStateDictionary = new Dictionary<DecorationType, DecorationState>();
 
 
+        public DecorationState GetDecorationState(DecorationType type)
+        {
+            if (!DecorationStateDictionary.ContainsKey(type))
+                return DecorationState.Evil;
+
+            return DecorationStateDictionary[type];
+
+        }
+
         public void SetDecorationState(DecorationType decorationType, DecorationState decorationState)
         {
             DecorationStateDictionary[decorationType] = decorationState;

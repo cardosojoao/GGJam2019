@@ -28,25 +28,26 @@ public class SequenceButton : MonoBehaviour
         Animator.SetTrigger("Hit");
     }
 
-    public void SelfDestroy()
+    public void SelfDestroyAnimation()
     {
         if (this != null)
-        {
-            _animating = true;
-            Animator.SetTrigger("Miss");
-            StartCoroutine(WaitForClear());
-        }
+            StartCoroutine(WaitToDestroy());
     }
 
-    private IEnumerator WaitForClear()
+    private IEnumerator WaitToDestroy()
     {
         while (Clearing)
             yield return null;
-        Destroy(gameObject);
+
+        _animating = true;
+        Animator.SetTrigger("Die");
+
     }
 
     public void ClickWrong()
     {
+        _animating = true;
+        Animator.SetTrigger("Miss");
     }
 
     public void AnimationFinish()

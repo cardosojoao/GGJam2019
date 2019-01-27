@@ -10,8 +10,13 @@ PrefabInstance:
     - target: {fileID: 7918195731070445619, guid: e934411cbff611140a403a08ccf1d9d7,
         type: 3}
       propertyPath: m_Name
-      value: Boss
+      value: Fire Iron Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 7918195731070445622, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: HealAudio
+      value: 
+      objectReference: {fileID: 7869927874032266673}
     - target: {fileID: 7918195731070445616, guid: e934411cbff611140a403a08ccf1d9d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,5 +72,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1176470464936952153, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.000000095367
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176470464936952153, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00000021458
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176470464936952153, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.085232
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176470464936952153, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.085232
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176470464936952153, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.085232
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741458206445438202, guid: e934411cbff611140a403a08ccf1d9d7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 893827471509cf14e95354596661e188,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e934411cbff611140a403a08ccf1d9d7, type: 3}
+--- !u!82 &7869927874032266673 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2413119247096673344, guid: e934411cbff611140a403a08ccf1d9d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5497354316517317105}
+  m_PrefabAsset: {fileID: 0}

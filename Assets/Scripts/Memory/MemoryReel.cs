@@ -36,6 +36,7 @@ namespace Assets.Scripts.Memory
             }
         }
         public MemorySlice[] SliceArray;
+        public int SpriteCount;
 
         [SerializeField]
         private DecorationType _currentMemoryReel;
@@ -53,10 +54,14 @@ namespace Assets.Scripts.Memory
         public void SetMemoryReel()
         {
             if (!_memorySpriteDictionary.ContainsKey(_currentMemoryReel) || SliceArray == null)
+            {
+                SpriteCount = 0;
                 return;
+            }
 
             Sprite[] spriteArray = _memorySpriteDictionary[_currentMemoryReel];
-            for (int i = 0; i < Mathf.Min(spriteArray.Length, SliceArray.Length); i++)
+            SpriteCount = Mathf.Min(spriteArray.Length, SliceArray.Length);
+            for (int i = 0; i < SpriteCount; i++)
             {
                 SliceArray[i].SliceImage.sprite = spriteArray[i];
             }

@@ -33,7 +33,7 @@ public class Attack : MonoBehaviour
         weapon.Play("Attack");
         audioSource.clip = SFX;
         audioSource.Play();
-        //yield return new WaitForSeconds(.5f);
+
     }
 
     public void DealDamage()
@@ -44,6 +44,7 @@ public class Attack : MonoBehaviour
     public void FinishAttack()
     {
         gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
 }

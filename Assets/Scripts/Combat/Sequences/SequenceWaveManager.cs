@@ -16,10 +16,11 @@ namespace Assets.Scripts.Combat.Sequences
     {
         public WaveDifficulty[] WaveDifficultyArray;
         public SequenceManager SequenceManager;
+        public RefreshBar RefreshBar;
 
         private bool WavesActive = false;
         private int _timeInDif;
-        private WaveDifficulty Dificulty
+        private WaveDifficulty Difficulty
         {
             get
             {
@@ -55,26 +56,48 @@ namespace Assets.Scripts.Combat.Sequences
         private IEnumerator WaveRoutine()
         {
             WavesActive = true;
-            yield return SequenceManager.NextSequence(Dificulty.SequenceSize, WaveFinished);
-            if (Dificulty.SequenceExpireTime > 0f)
+            yield return SequenceManager.NextSequence(Difficulty.SequenceSize, WaveFinished);
+
+            if (Difficulty.SequenceExpireTime > 0f)
             {
-                yield return new WaitForSeconds(Dificulty.SequenceExpireTime);
+                yield return WaitForRefresh();
                 yield return WaveRoutine();
             }
         }
 
+        private IEnumerator WaitForRefresh()
+        {
+            var startTime = Time.time;
+            var timePassed = Time.time - startTime;
+            var expireTime = Difficulty.SequenceExpireTime;
+            RefreshBar.Refresh();
+            while (timePassed < expireTime)
+            {
+                RefreshBar.SetState(expireTime - timePassed, expireTime);
+                yield return null;
+                timePassed = Time.time - startTime;
+            }
+
+            RefreshBar.SetState(0, expireTime);
+
+        }
+
         private void WaveFinished(bool success)
         {
-            if (WavesActive && (success || Dificulty.SequenceExpireTime == 0))
+            if (WavesActive && (success || Difficulty.SequenceExpireTime == 0))
             {
                 if (success)
                     _timeInDif++;
 
+                if (_timeInDif >= Difficulty.RoundToNextDif)
+                {
+                    GameManager.Instance.Dificulty++;
+                    _timeInDif = 0;
+                }
+
                 StopAllCoroutines();
                 StartCoroutine(WaveRoutine());
 
-                if (_timeInDif >= Dificulty.RoundToNextDif)
-                    GameManager.Instance.Dificulty++;
             }
         }
     }

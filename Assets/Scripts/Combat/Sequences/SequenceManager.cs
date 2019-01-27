@@ -20,6 +20,7 @@ public class SequenceManager : MonoBehaviour
     public Animator animatorSequence;
     public AudioClip GoodSequence;
     public AudioClip BadSequence;
+    public RefreshBar RefreshBar;
 
     public AttackManager AttackManager;
     public SequenceData[] SequenceTypeArray;
@@ -63,12 +64,15 @@ public class SequenceManager : MonoBehaviour
     private int InputRequired;
     private bool lastStep;
     private Action<bool> _sequenceCallback;
+    private bool _animating;
 
     public IEnumerator NextSequence(int length, Action<bool> sequenceCallback)
     {
         if (_sequenceActive)
             yield return ClearSequenceRoutine();
 
+        while (_animating)
+            yield return null;
         while (_clearing)
             yield return null;
 
@@ -91,9 +95,15 @@ public class SequenceManager : MonoBehaviour
 
     private void CheckButtonPressed(string buttonPressed)
     {
-        if (_currentSequence.Finished || _currentSequence.Broken)
+        if (_currentSequence.Broken)
+        {
+            Animate("fail");
+            PlayClip(BadSequence);
             return;
+        }
 
+        if (_currentSequence.Finished)
+            return;
         var nextButton = _currentSequence.CurrentButton();
         var lastButton = _currentSequence.InFinalButton();
 
@@ -104,25 +114,46 @@ public class SequenceManager : MonoBehaviour
 
             _currentSequence.ShowClickButton(true);
             if (AttackManager != null)
-                AttackManager.Attack(currentButtonType.AttackType, lastButton);
+            {
+                var combo = lastButton && _currentSequence.Count > 1;
+                AttackManager.Attack(currentButtonType.AttackType, combo);
+            }
 
 
             if (lastButton)
             {
                 ClearSequence();
-                AudioSourceSFX.clip = GoodSequence;
-                AudioSourceSFX.Play();
+                PlayClip(GoodSequence);
             }
         }
         else
         //Wrong
         {
             _currentSequence.ShowClickButton(false);
-            //animatorSequence.SetTrigger("fail");
-            AudioSourceSFX.clip = BadSequence;
-            AudioSourceSFX.Play();
-            ClearSequence();
+            Animate("fail");
+            RefreshBar.TriggerError();
+            PlayClip(BadSequence);
+
+            CallCallback();
         }
+    }
+
+    private void PlayClip(AudioClip clip)
+    {
+        AudioSourceSFX.Stop();
+        AudioSourceSFX.clip = clip;
+        AudioSourceSFX.Play();
+    }
+
+    private void Animate(string triggerName)
+    {
+        animatorSequence.SetTrigger(triggerName);
+        _animating = true;
+    }
+
+    private void AnimationDone()
+    {
+        _animating = false;
     }
 
     private string GetButtonPressed()
@@ -172,6 +203,15 @@ public class SequenceManager : MonoBehaviour
 
     }
 
+    private void CallCallback()
+    {
+        var callback = _sequenceCallback;
+        if (callback != null)
+        {
+            _sequenceCallback = null;
+            callback(_currentSequence.Finished);
+        }
+    }
 
 
     private SequenceButton[] GenerateButtonArray(string[] sequence)

@@ -14,10 +14,13 @@ namespace Assets.Scripts
         public DecorationManager DecorationManager;
         public BackgroundMusicManager MusicManager;
         public int Dificulty;
+        public bool MoveTutorialRan;
 
         private void Start()
         {
             StartCoroutine(CheckIfController());
+            if (MusicManager != null)
+                MusicManager.CheckOverride(SceneManager.GetActiveScene().name);
         }
 
         public bool Paused { get; set; }
@@ -26,6 +29,7 @@ namespace Assets.Scripts
         public void ResetGame()
         {
             Dificulty = 0;
+            MoveTutorialRan = false;
             DecorationManager.Clear();
         }
 
