@@ -1012,7 +1012,7 @@ MonoBehaviour:
   bossContainer: {fileID: 614867266}
   Active: 0
   Debug: 0
-  DebugBoss: 1
+  DebugBoss: 3
   ComboDamageMultiplier: 10
   CurrentBoss: {fileID: 0}
 --- !u!82 &491638533
