@@ -50,6 +50,7 @@ namespace Assets.Scripts.Combat.Sequences
         public void StopWaves()
         {
             WavesActive = false;
+            StopAllCoroutines();
             SequenceManager.ClearSequence();
         }
 

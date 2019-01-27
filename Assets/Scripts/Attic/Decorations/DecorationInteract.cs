@@ -8,6 +8,8 @@ namespace Assets.Scripts.Attic.Decorations
 {
     public class DecorationInteract : InteractionObject
     {
+
+
         public DecorationObject DecorationObject;
         public string ButtonKey = "Activate";
         public string CombatScene = "Combat";
@@ -20,7 +22,9 @@ namespace Assets.Scripts.Attic.Decorations
             if (DecorationObject.State == DecorationState.Good || DecorationObject.State == DecorationState.TurningGood)
                 return;
 
-            Fader.FadeIn();
+            var nextDecoration = GameManager.Instance.DecorationManager.NextDecoration();
+            if (DecorationObject.DecorationType == nextDecoration)
+                Fader.FadeIn();
         }
 
         public override void DeactivateObject()

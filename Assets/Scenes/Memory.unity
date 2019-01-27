@@ -211,15 +211,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MemorySpriteArray:
-  - Decoration: 0
+  - Decoration: 2
     SpriteArray:
     - {fileID: 21300000, guid: 25ad330cb9cd7ff4cac33a770afdc5fa, type: 3}
     - {fileID: 21300000, guid: a2ae694866d9ca8439675d15a9962ee2, type: 3}
+    - {fileID: 21300000, guid: b4ecfeebec420684089e30001de541c6, type: 3}
+    - {fileID: 21300000, guid: 73c784aff5c48e54fb49526c9916b63c, type: 3}
+    - {fileID: 21300000, guid: 23c4f344ac5bfe446ba681b84c81b242, type: 3}
   - Decoration: 1
     SpriteArray: []
   - Decoration: 3
     SpriteArray: []
-  - Decoration: 2
+  - Decoration: 0
     SpriteArray: []
   SliceArray:
   - {fileID: 3899225706713993636}
@@ -2175,8 +2178,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1785722134}
-  - component: {fileID: 1785722135}
   - component: {fileID: 1785722136}
+  - component: {fileID: 1785722135}
   m_Layer: 5
   m_Name: Controls
   m_TagString: Untagged
@@ -2215,10 +2218,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1785722133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb8cd0ea7f428746b279af5a7e99c2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 49a762bacdb75504c83bd4f3d3c40660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FaderAnimator: {fileID: 1785722136}
+  Fader: {fileID: 1785722136}
 --- !u!95 &1785722136
 Animator:
   serializedVersion: 3

@@ -82,6 +82,7 @@ public class CombatManager : SingletonMonoBehaviour<CombatManager>
     public void CombateFinished()
     {
         Active = false;
+        sequenceManager.StopWaves();
     }
 
 

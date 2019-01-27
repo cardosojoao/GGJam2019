@@ -1012,7 +1012,7 @@ MonoBehaviour:
   bossContainer: {fileID: 614867266}
   Active: 0
   Debug: 0
-  DebugBoss: 2
+  DebugBoss: 1
   ComboDamageMultiplier: 10
   CurrentBoss: {fileID: 0}
 --- !u!82 &491638533
@@ -2558,10 +2558,16 @@ MonoBehaviour:
     ControllerButtonSprite: {fileID: 21300000, guid: 8ec94412446e03f48a24e45090fb9e5f,
       type: 3}
   - TargetButton: Button3
-    AttackType: 2
+    AttackType: 1
     KeyboardButtonSprite: {fileID: 21300000, guid: 603b1ac09e0a8ae4296db4b30fcc2562,
       type: 3}
     ControllerButtonSprite: {fileID: 21300000, guid: 4d370d76bffb2f14894e4cb5823e45d4,
+      type: 3}
+  - TargetButton: Button4
+    AttackType: 0
+    KeyboardButtonSprite: {fileID: 21300000, guid: 53fbef2b9b39ae84b90bd509edef971b,
+      type: 3}
+    ControllerButtonSprite: {fileID: 21300000, guid: 949b51babf5eea844a35891788f7bf97,
       type: 3}
   AudioSourceSFX: {fileID: 1798638349}
 --- !u!82 &1798638349
